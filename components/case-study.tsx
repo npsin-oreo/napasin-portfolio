@@ -18,6 +18,7 @@ export type Section = { n: string; title: string; blocks: Block[] };
 export type CaseData = {
   slug: string; // this case's own route — used to exclude it from the "more work" footer
   cover?: string; // path to a cover image in /public; falls back to a branded poster
+  brandLogo?: string; // product logo shown as a small brand chip in the hero
   kicker: string;
   title: string;
   subhead: string;
@@ -39,7 +40,15 @@ export function CaseStudy({ data }: { data: CaseData }) {
           <Link href="/#work" className="font-mono text-sm text-muted transition-colors hover:text-fg">
             ← Work
           </Link>
-          <p className="mt-8 font-mono text-sm text-accent">{data.kicker}</p>
+          {data.brandLogo && (
+            <div className="mt-8">
+              <span className="inline-flex items-center rounded-full bg-white px-4 py-2 shadow-sm">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={data.brandLogo} alt={`${data.title} logo`} className="h-6 w-auto" />
+              </span>
+            </div>
+          )}
+          <p className={`${data.brandLogo ? "mt-5" : "mt-8"} font-mono text-sm text-accent`}>{data.kicker}</p>
           <h1 className="mt-4 text-[2.25rem] font-medium leading-[1.08] tracking-[-0.02em] text-fg sm:text-5xl">
             {data.title}
           </h1>

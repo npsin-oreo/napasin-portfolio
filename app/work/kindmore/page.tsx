@@ -9,6 +9,8 @@ export const metadata: Metadata = {
 
 const data: CaseData = {
   slug: "/work/kindmore",
+  cover: "/images/kindmore-line.png",
+  brandLogo: "/images/kindmore-logo.png",
   kicker: "Service Design · Healthcare · AI-integrated operations",
   title: "Designing the whole clinic",
   subhead:
@@ -59,7 +61,7 @@ const data: CaseData = {
         { t: "p", text: "By the time a patient enters, the doctor has already seen the chief complaint, history, and vitals — surfaced by our HIS. The consultation starts at the problem, not at “so, what brings you here?”" },
         { t: "sub", text: "4 · AI takes the paperwork, the doctor takes the patient." },
         { t: "p", text: "PresScribe runs in the exam room: one button, and the note writes itself for review. That's why 7:56 of consultation is genuinely quality time — the doctor's eyes never drop to a keyboard." },
-        { t: "art", label: "Service blueprint — frontstage / backstage / systems" },
+        { t: "art", src: "/images/kindmore-blueprint.png", label: "Service blueprint — frontstage, backstage & systems (customer journey → evidence → technology → support)" },
       ],
     },
     {
@@ -75,7 +77,7 @@ const data: CaseData = {
         { t: "p", text: "The clearest “no” was an on-site lab: one room, no space, so instead of forcing a lab into a clinic that couldn't hold one, we designed around the gap. Samples are drawn on site and sent to a lab next door; results flow back into the record. Meeting the constraint beat pretending it wasn't there." },
         { t: "sub", text: "Iteration — the weekly loop, one concrete turn." },
         { t: "p", text: "Reviews run weekly, and one surfaced a slow spot: registration. The first design used one form for everyone, ordered to hold every field a Thai or a foreign patient might need — so every registration paid for fields that didn't apply. The fix was structural: ask one thing first — Thai or foreigner — and collapse the form to only what's relevant. Registration got about 30% faster." },
-        { t: "art", label: "UI — front desk & medication order (dummy data)" },
+        { t: "art", src: "/images/kindmore-examroom.png", label: "The clinic HIS — exam room, with the staff modules (queue · dispensing · payment) in the rail and PresScribe's AI summary at right (dummy data)" },
       ],
     },
     {
