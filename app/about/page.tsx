@@ -8,12 +8,27 @@ export const metadata: Metadata = {
     "Product & Service Designer in Bangkok. 7 years from brand craft to AI systems — healthcare products, real-world services, and design operations.",
 };
 
-const ARC = [
-  "I started as a graphic and brand designer. My first real design lessons didn't come from a screen — they came from field trips. Designing packaging for OTOP community products meant sitting with producers, understanding what they made and why, then translating that into something a shelf could sell.",
-  "Four years ago I moved into UX/UI at Looloo Technology, into the deep end: AI healthcare. I designed PresScribe, an AI medical scribe that writes clinical notes so doctors can keep their eyes on patients — work that taught me to treat clinical documentation as an attention-management problem, not a typing task.",
-  "Then the scope kept growing. We built KindMore Clinic — a real clinic, designed end-to-end as a living sandbox, where a doctor visit takes about 20 minutes instead of a whole day. I designed the service, the HIS behind it, and the measurement loop that keeps improving it. Alongside, Virtual Agent stretched me across the full width of design: brand identity, bilingual guidelines, and an enterprise voice-agent platform.",
-  "Today I also design the way design gets done. My DesignOps pipeline encodes my judgment — accessibility, token discipline, honesty about evidence — into gates a machine can enforce. Seven years in, my scope has grown from a package on a shelf to the operating system of a design team.",
-  "That arc explains something recruiters often ask about: why my work has both visual craft (brand identities, guidelines, key visuals) and systems thinking (service blueprints, design ops, AI workflows). They aren't two skill sets — they're the same habit applied at growing scale. And the thread has never changed since that first packaging job: go to where the work happens, understand it first, then design for it. Research-driven isn't a method I adopted when I became a UX designer. It's how I learned to design at all.",
+const TIMELINE = [
+  {
+    stage: "CRAFT",
+    tag: "Brand & packaging",
+    body: "I started as a graphic and brand designer. My first real design lessons didn't come from a screen, they came from field trips. Designing packaging for OTOP community products meant sitting with producers, understanding what they made and why, then translating that into something a shelf could sell. Research-first wasn't a method I adopted later; it's how I learned to design at all.",
+  },
+  {
+    stage: "PRODUCT",
+    tag: "AI healthcare",
+    body: "Four years ago I moved into UX/UI at Looloo Technology, into the deep end: AI healthcare. I designed PresScribe, an AI medical scribe that writes clinical notes so doctors can keep their eyes on patients. That work taught me to treat clinical documentation as an attention-management problem, not a typing task.",
+  },
+  {
+    stage: "SERVICE",
+    tag: "Whole systems",
+    body: "Then the scope kept growing. We built KindMore Clinic, a real clinic designed end to end as a living sandbox, where a doctor visit takes about 20 minutes instead of a whole day. I designed the service, the system behind it, and the measurement loop that keeps improving it. Alongside that, Virtual Agent stretched me across the full width of design: brand identity, bilingual guidelines, and an enterprise voice-agent platform.",
+  },
+  {
+    stage: "SYSTEMS",
+    tag: "DesignOps",
+    body: "Today I also design the way design gets done. My DesignOps pipeline encodes my judgment, from accessibility to honesty about evidence, into steps a machine can run. Seven years in, my scope has grown from a package on a shelf to the operating system of a design team. The thread has never changed: understand the real work first, then design for it.",
+  },
 ];
 
 const PRINCIPLES = [
@@ -86,14 +101,37 @@ export default function About() {
           </div>
         </section>
 
-        {/* career arc */}
-        <Section title="From craft to systems">
-          <div className="max-w-[68ch] space-y-5">
-            {ARC.map((p, i) => (
-              <p key={i} className="text-lg leading-relaxed text-muted">{p}</p>
-            ))}
+        {/* career arc — timeline */}
+        <section className="mt-20 border-t border-border pt-14">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[300px_1fr] lg:gap-16">
+            <div className="lg:sticky lg:top-24 lg:self-start">
+              <h2 className="text-3xl font-medium tracking-[-0.02em] text-fg sm:text-4xl">
+                From craft to systems
+              </h2>
+              <p className="mt-4 max-w-[32ch] leading-relaxed text-muted">
+                Seven years, one thread: understand the real work first, then design for it.
+              </p>
+              <p className="mt-4 font-mono text-sm text-muted">
+                Craft <span className="text-accent">→</span> Product <span className="text-accent">→</span>{" "}
+                Service <span className="text-accent">→</span> Systems
+              </p>
+            </div>
+
+            <ol className="relative border-l border-border pl-8">
+              {TIMELINE.map((e, i) => (
+                <li key={e.stage} className="relative pb-10 last:pb-0">
+                  <span className="absolute -left-8 top-1.5 size-3 -translate-x-1/2 rounded-full bg-accent ring-4 ring-bg" />
+                  <p className="font-mono text-sm">
+                    <span className="text-muted">0{i + 1}</span>{" "}
+                    <span className="text-accent">{e.stage}</span>{" "}
+                    <span className="text-muted/70">{e.tag}</span>
+                  </p>
+                  <p className="mt-3 max-w-[62ch] text-lg leading-relaxed text-muted">{e.body}</p>
+                </li>
+              ))}
+            </ol>
           </div>
-        </Section>
+        </section>
 
         {/* how I work */}
         <Section title="How I work">
