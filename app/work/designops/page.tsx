@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 };
 
 const data: CaseData = {
+  slug: "/work/designops",
   kicker: "DesignOps · AI workflow · Open source",
   title: "Real gates, not vibes",
   subhead:
@@ -77,7 +78,7 @@ const data: CaseData = {
           "Capability: raw brief in → spec + working prototype out, with accessibility and quality gates enforced end-to-end.",
           "Every gate is inspectable: the audit that blocks a build is the same code you can read and run — no numbers to take on faith.",
         ] },
-        { t: "quote", text: "Don't take my word for it. Clone it." },
+        { t: "callout", text: "Don't take my word for it. Clone it." },
       ],
     },
   ],
@@ -86,7 +87,6 @@ const data: CaseData = {
     "Taste can be encoded — partially. Richness scores, banned defaults, and mood-first aesthetics catch most slop. What they can't catch yet is why a layout feels right. The boundary between what I could encode and what I couldn't taught me more about my own judgment than anything else.",
     "Constraints design better systems. No Variables API forced a Token Studio workflow that turned out more portable than the “proper” solution would have been.",
   ],
-  next: { title: "Back to where it started — KindMore Clinic", href: "/work/kindmore" },
 };
 
 export default function Page() {

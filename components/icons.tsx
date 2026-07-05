@@ -38,6 +38,35 @@ export function Download(p: P) {
     </svg>
   );
 }
+export function Quote(p: P) {
+  return (
+    <svg {...base(p)}>
+      <path
+        d="M9.4 6C6.4 6 4 8.5 4 11.6V18h6.2v-6.2H7.1c0-1.7 1-3 2.3-3.2V6zm10.6 0c-3 0-5.4 2.5-5.4 5.6V18h6.2v-6.2h-3.1c0-1.7 1-3 2.3-3.2V6z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+export function Sparkle(p: P) {
+  return (
+    <svg {...base(p)}>
+      <path
+        d="M12 2.5l1.9 5.6a3 3 0 001.9 1.9L21.5 12l-5.6 1.9a3 3 0 00-1.9 1.9L12 21.5l-1.9-5.6a3 3 0 00-1.9-1.9L2.5 12l5.6-1.9a3 3 0 001.9-1.9L12 2.5z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+export function ImageFrame(p: P) {
+  return (
+    <svg {...base(p)}>
+      <rect x="3" y="4.5" width="18" height="15" rx="2.5" stroke="currentColor" strokeWidth="1.6" />
+      <circle cx="8.5" cy="9.5" r="1.6" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M4 16l4.5-4 4 3.5 3-2.5L20 17" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 export function Mail(p: P) {
   return (
     <svg {...base(p)}>

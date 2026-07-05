@@ -53,6 +53,19 @@ export const MORE_WORK = {
   tag: "Short case · details on request",
 };
 
+// Canonical list of every case (main + short), numbered 01–05.
+// Used by the "Next up · More work" footer on each case page, which shows
+// all cases except the one being read. Short single-word tags for the cards.
+export type CaseRef = { slug: string; num: string; tag: string; title: string };
+
+export const ALL_CASES: CaseRef[] = [
+  { slug: "/work/kindmore", num: "01", tag: "Service", title: "Designing the whole clinic" },
+  { slug: "/work/presscribe", num: "02", tag: "Product", title: "The best interface is no interface" },
+  { slug: "/work/virtual-agent", num: "03", tag: "Brand", title: "Designing a voice, not a bot" },
+  { slug: "/work/designops", num: "04", tag: "Process", title: "Real gates, not vibes" },
+  { slug: "/work/scam-insight", num: "05", tag: "Data", title: "Making invisible damage visible" },
+];
+
 export const CONTACT = {
   email: "napasin.int@gmail.com",
   phone: "+66 63 209 7908",

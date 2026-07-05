@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 };
 
 const data: CaseData = {
+  slug: "/work/presscribe",
   kicker: "AI Product Design · Clinical UX",
   title: "The best interface in the exam room is no interface",
   subhead:
@@ -54,7 +55,7 @@ const data: CaseData = {
       title: "Speed wasn't the problem. Trust was.",
       blocks: [
         { t: "p", text: "Zoomed into the OPD exam room, the pain looked like a typing problem: doctors splitting attention between the patient and the EMR — half listening, half typing, eye contact lost to a screen. Some doctors took paper notes during consultations and retyped them after hours: documentation so hostile it created double work." },
-        { t: "quote", text: "Doctors don't want to type faster. They want to stop thinking about typing at all. Clinical documentation is an attention-management problem, not a typing task." },
+        { t: "callout", text: "Doctors don't want to type faster. They want to stop thinking about typing at all. Clinical documentation is an attention-management problem, not a typing task." },
         { t: "p", text: "But an AI that writes clinical notes raises the stakes: a wrong note can mean wrong treatment. So the design question was never “how fast can AI generate a note?” — it was “how does a doctor come to trust a note they didn't write?”" },
         { t: "list", items: [
           "Invisible during the consultation — but controllable after it.",
@@ -126,7 +127,6 @@ const data: CaseData = {
     "Thai medical speech taught us what English-first ASR playbooks don't cover: code-switching between Thai and English medical terms is every sentence. The harder layer under that was dialect — hearing Thai as it's actually spoken, not the textbook version — all under a line doctors never let us cross: they wanted speed and accuracy, fully, at once.",
     "Prototype to learn, not to commit. The nurse track's rapid wireframes cost days, not months — and bought the clarity to stop before building something the ward's hardware couldn't support.",
   ],
-  next: { title: "KindMore Clinic — Designing the whole clinic", href: "/work/kindmore" },
 };
 
 export default function Page() {

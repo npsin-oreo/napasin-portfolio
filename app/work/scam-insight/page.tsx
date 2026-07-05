@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 };
 
 const data: CaseData = {
+  slug: "/work/scam-insight",
   kicker: "Short case · Data platform · Public communication",
   title: "Making invisible damage visible",
   subhead:

@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
-import { ArrowRight, ArrowUpRight } from "@/components/icons";
+import { ArrowUpRight, Quote, Sparkle, ImageFrame } from "@/components/icons";
+import { ALL_CASES } from "@/lib/cases";
 
 export type Block =
   | { t: "p"; text: string }
   | { t: "quote"; text: string }
+  | { t: "callout"; text: string } // standout key insight — heavier than a pull quote
   | { t: "sub"; text: string } // small bold lead-in inside a section
   | { t: "list"; items: string[] }
   | { t: "table"; rows: [string, string][] }
@@ -14,6 +16,7 @@ export type Block =
 export type Section = { n: string; title: string; blocks: Block[] };
 
 export type CaseData = {
+  slug: string; // this case's own route — used to exclude it from the "more work" footer
   kicker: string;
   title: string;
   subhead: string;
@@ -22,7 +25,6 @@ export type CaseData = {
   impact?: string[];
   sections: Section[];
   learnings?: string[];
-  next?: { title: string; href: string };
   repo?: string;
 };
 
@@ -84,9 +86,11 @@ export function CaseStudy({ data }: { data: CaseData }) {
         {/* sections */}
         {data.sections.map((s) => (
           <section key={s.n} className="mt-16 border-t border-border pt-12">
-            <div className="flex items-baseline gap-4">
-              <span className="font-mono text-sm text-accent">{s.n}</span>
-              <h2 className="text-2xl font-medium leading-snug tracking-[-0.01em] text-fg sm:text-[28px]">
+            <div className="flex items-start gap-4">
+              <span className="grid size-9 shrink-0 place-items-center rounded-item border border-accent/25 bg-accent/[0.08] font-mono text-sm text-accent">
+                {s.n}
+              </span>
+              <h2 className="pt-1 text-2xl font-medium leading-snug tracking-[-0.01em] text-fg sm:text-[28px]">
                 {s.title}
               </h2>
             </div>
@@ -101,34 +105,62 @@ export function CaseStudy({ data }: { data: CaseData }) {
         {/* learnings */}
         {data.learnings && data.learnings.length > 0 && (
           <section className="mt-16 border-t border-border pt-12">
-            <h2 className="text-2xl font-medium tracking-[-0.01em] text-fg sm:text-[28px]">What I learned</h2>
-            <ol className="mt-6 space-y-5">
+            <div className="flex items-center gap-3">
+              <Sparkle className="size-5 text-accent" />
+              <h2 className="text-2xl font-medium tracking-[-0.01em] text-fg sm:text-[28px]">What I learned</h2>
+            </div>
+            <ol className="mt-8 space-y-4">
               {data.learnings.map((l, i) => (
-                <li key={i} className="flex gap-4">
-                  <span className="mt-1 font-mono text-sm text-accent">{i + 1}</span>
-                  <p className="text-lg leading-relaxed text-muted">{l}</p>
+                <li key={i} className="flex gap-4 rounded-card border border-border bg-surface p-5">
+                  <span className="grid size-8 shrink-0 place-items-center rounded-full border border-accent/25 bg-accent/[0.08] font-mono text-sm text-accent">
+                    {i + 1}
+                  </span>
+                  <p className="pt-0.5 text-lg leading-relaxed text-muted">{l}</p>
                 </li>
               ))}
             </ol>
           </section>
         )}
 
-        {/* next */}
-        {data.next && (
-          <Link
-            href={data.next.href}
-            className="group mt-16 flex items-center justify-between gap-6 rounded-card border border-border bg-surface p-6 transition-colors hover:border-accent/40"
-          >
-            <span>
-              <span className="font-mono text-xs uppercase tracking-wide text-muted">Next case</span>
-              <span className="mt-1.5 block text-lg font-medium text-fg">{data.next.title}</span>
-            </span>
-            <ArrowRight className="size-5 shrink-0 text-muted transition-all group-hover:translate-x-0.5 group-hover:text-accent" />
-          </Link>
-        )}
+        {/* next up — more work */}
+        <MoreWork current={data.slug} />
       </main>
       <Footer />
     </>
+  );
+}
+
+function MoreWork({ current }: { current: string }) {
+  const others = ALL_CASES.filter((c) => c.slug !== current);
+  return (
+    <section className="mt-20 border-t border-border pt-14">
+      <p className="font-mono text-sm text-accent">Next up · More work</p>
+      <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {others.map((c) => (
+          <Link
+            key={c.slug}
+            href={c.slug}
+            className="group flex flex-col overflow-hidden rounded-card border border-border bg-surface transition-colors hover:border-accent/40"
+          >
+            <div className="relative grid aspect-[16/10] place-items-center overflow-hidden border-b border-border bg-gradient-to-br from-surface-2 to-bg">
+              <span aria-hidden className="pointer-events-none select-none font-mono text-6xl text-fg/[0.04]">
+                {c.num}
+              </span>
+              <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_100%_0%,color-mix(in_oklab,var(--color-accent)_10%,transparent),transparent)]" />
+            </div>
+            <div className="flex flex-1 flex-col p-6">
+              <p className="font-mono text-xs uppercase tracking-wide text-muted">
+                {c.num} · {c.tag}
+              </p>
+              <h3 className="mt-3 text-lg font-medium leading-snug text-fg">{c.title}</h3>
+              <span className="mt-5 inline-flex items-center gap-1.5 text-sm text-accent">
+                Read case <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -138,18 +170,36 @@ function BlockView({ b }: { b: Block }) {
       return <p className="text-lg leading-relaxed text-muted">{b.text}</p>;
     case "quote":
       return (
-        <blockquote className="border-l-2 border-accent pl-5 text-xl font-medium leading-snug text-fg">
-          {b.text}
-        </blockquote>
+        <figure className="relative pl-6">
+          <span aria-hidden className="absolute left-0 top-1 h-[calc(100%-0.5rem)] w-0.5 rounded bg-accent" />
+          <Quote aria-hidden className="mb-2 size-6 text-accent/60" />
+          <blockquote className="text-xl font-medium leading-snug text-fg">{b.text}</blockquote>
+        </figure>
+      );
+    case "callout":
+      return (
+        <div className="relative flex gap-4 overflow-hidden rounded-card border border-accent/25 bg-accent/[0.06] p-6">
+          <Sparkle aria-hidden className="mt-1 size-5 shrink-0 text-accent" />
+          <p className="text-lg font-medium leading-relaxed text-fg">{b.text}</p>
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_120%_at_100%_0%,color-mix(in_oklab,var(--color-accent)_7%,transparent),transparent)]"
+          />
+        </div>
       );
     case "sub":
-      return <p className="pt-1 text-base font-medium text-fg">{b.text}</p>;
+      return (
+        <p className="flex items-center gap-2.5 pt-2 text-base font-medium text-fg">
+          <span aria-hidden className="h-4 w-1 shrink-0 rounded-full bg-accent" />
+          {b.text}
+        </p>
+      );
     case "list":
       return (
-        <ul className="space-y-2">
+        <ul className="space-y-2.5">
           {b.items.map((it, i) => (
             <li key={i} className="flex gap-3 text-lg leading-relaxed text-muted">
-              <span className="mt-2.5 size-1.5 shrink-0 rounded-full bg-accent" />
+              <span aria-hidden className="mt-2.5 size-1.5 shrink-0 rounded-full bg-accent" />
               <span>{it}</span>
             </li>
           ))}
@@ -172,10 +222,14 @@ function BlockView({ b }: { b: Block }) {
       );
     case "art":
       return (
-        <div className="relative grid aspect-[16/9] place-items-center overflow-hidden rounded-card border border-dashed border-border bg-gradient-to-br from-surface-2 to-bg">
-          <span className="max-w-[80%] text-center font-mono text-xs text-muted/70">{b.label}</span>
-          <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_100%_0%,color-mix(in_oklab,var(--color-accent)_8%,transparent),transparent)]" />
-        </div>
+        <figure className="relative grid aspect-[16/9] place-items-center gap-3 overflow-hidden rounded-card border border-dashed border-border bg-gradient-to-br from-surface-2 to-bg">
+          <ImageFrame aria-hidden className="size-7 text-muted/40" />
+          <figcaption className="max-w-[80%] text-center font-mono text-xs text-muted/70">{b.label}</figcaption>
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_100%_0%,color-mix(in_oklab,var(--color-accent)_8%,transparent),transparent)]"
+          />
+        </figure>
       );
   }
 }

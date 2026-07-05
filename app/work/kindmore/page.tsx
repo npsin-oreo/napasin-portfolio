@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 };
 
 const data: CaseData = {
+  slug: "/work/kindmore",
   kicker: "Service Design · Healthcare · AI-integrated operations",
   title: "Designing the whole clinic",
   subhead:
@@ -26,7 +27,7 @@ const data: CaseData = {
       blocks: [
         { t: "p", text: "Everyone in Thailand knows this pain. A clinic visit means an hour in the waiting room. A hospital visit means taking the day off — queuing at registration, for vitals, for the doctor, to pay, for medicine. All of it for a consultation that lasts a few minutes." },
         { t: "p", text: "Our team had already built PresScribe, an AI scribe that frees doctors from note-taking. It worked — retrofitted into systems designed decades ago. That raised a bigger question:" },
-        { t: "quote", text: "If we designed a clinic from day one — every touchpoint, with AI in the system from the start — how good could the experience get?" },
+        { t: "callout", text: "If we designed a clinic from day one — every touchpoint, with AI in the system from the start — how good could the experience get?" },
         { t: "p", text: "So we built one. KindMore Clinic (ใกล้หมอ) is a real, operating medical clinic — real patients, real staff, real doctors — that doubles as a living sandbox where service-design decisions get tested against reality and measured every day." },
       ],
     },
@@ -109,7 +110,6 @@ const data: CaseData = {
     "Standardization vs. front-line flexibility is a daily negotiation. Our own registration form taught it early: one universal flow, built to be “complete,” was slow for everyone until we let it flex to who the patient actually was. Completeness isn't the same as usable.",
     "Fast and caring aren't opposites — but only if speed comes from the backstage. Patients praised both the speed and the warmth, which was the bet all along: remove the waiting, keep the human.",
   ],
-  next: { title: "PresScribe — the AI behind the exam room", href: "/work/presscribe" },
 };
 
 export default function Page() {

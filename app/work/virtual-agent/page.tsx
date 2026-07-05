@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 };
 
 const data: CaseData = {
+  slug: "/work/virtual-agent",
   kicker: "AI Product + Brand · Enterprise voice",
   title: "Designing a voice, not a bot",
   subhead:
@@ -27,7 +28,7 @@ const data: CaseData = {
       blocks: [
         { t: "p", text: "Large financial businesses — insurers, banks, lenders — live on the phone. Payment reminders, promotion offers, follow-ups, questions: millions of routine calls that must happen, every month." },
         { t: "p", text: "But a call center scales in one currency only: people. Twenty agents can take twenty calls. Quality holds only as long as humans can hold it — through fatigue, turnover, and training cycles. The ceiling is structural, and business growth keeps pressing against it." },
-        { t: "quote", text: "The question was never “how do we replace agents?” It was “how do we break the 1-person-1-call ceiling — without losing the human quality that makes calls work?”" },
+        { t: "callout", text: "The question was never “how do we replace agents?” It was “how do we break the 1-person-1-call ceiling — without losing the human quality that makes calls work?”" },
         { t: "p", text: "The vision: AI agents absorb the routine at scale — reminders, notifications, prescreening — so the same twenty humans handle the conversations that genuinely need a person. And in this industry there's a catch that shapes everything: outbound calls from financial companies already fight suspicion. A call that feels robotic doesn't just fail — it gets hung up on before it starts." },
         { t: "art", label: "Capacity — 20 : 20 → 20 : ∞ (with human escalation)" },
       ],
@@ -91,7 +92,6 @@ const data: CaseData = {
     "A designer can — and sometimes must — go into the machine. This was the project where I learned the AI craft hands-on: shaping conversation flows, defining intents, and understanding enough of how the model behaves to design with it rather than around it. Working shoulder to shoulder with ML and dev, that technical fluency wasn't a detour from design — it was what made the design real.",
     "Naming is design too. It's “Virtual Agent,” not “Call Bot” — the name holds the vision: virtual communication beyond the call center. The product grew into a brand because it was named like one.",
   ],
-  next: { title: "DesignOps Pipeline — Real gates, not vibes", href: "/work/designops" },
 };
 
 export default function Page() {
