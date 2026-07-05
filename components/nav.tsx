@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { WorkMenu } from "@/components/work-menu";
 
 export function Nav() {
   return (
@@ -8,7 +9,7 @@ export function Nav() {
           NPSIN<span className="text-accent">.</span>
         </Link>
         <div className="flex items-center gap-1 font-mono text-sm text-muted">
-          <Link href="/#work" className="rounded-full px-3 py-2 transition-colors hover:text-fg">Work</Link>
+          <WorkMenu />
           <Link href="/about" className="rounded-full px-3 py-2 transition-colors hover:text-fg">About</Link>
           <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="rounded-full px-3 py-2 transition-colors hover:text-fg">Resume</a>
           <Link href="/#contact" className="ml-2 rounded-full bg-accent px-4 py-2 text-accent-fg transition-opacity hover:opacity-90">

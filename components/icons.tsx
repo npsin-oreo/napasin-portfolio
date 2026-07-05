@@ -31,6 +31,13 @@ export function ArrowUpRight(p: P) {
     </svg>
   );
 }
+export function ChevronDown(p: P) {
+  return (
+    <svg {...base(p)}>
+      <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 export function Download(p: P) {
   return (
     <svg {...base(p)}>
