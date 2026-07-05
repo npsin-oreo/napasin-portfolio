@@ -9,7 +9,8 @@ export const metadata: Metadata = {
 
 const data: CaseData = {
   slug: "/work/kindmore",
-  cover: "/images/kindmore-line.png",
+  cover: "/images/kindmore-cover.jpg",
+  coverFit: "cover",
   brandLogo: "/images/kindmore-logo.png",
   kicker: "Service Design · Healthcare · AI-integrated operations",
   title: "Designing the whole clinic",
@@ -55,6 +56,7 @@ const data: CaseData = {
         { t: "quote", text: "We didn't make the consultation faster. We made everything around it disappear." },
         { t: "sub", text: "1 · LINE turns arrival into a relationship, not a form." },
         { t: "p", text: "The clinic's LINE OA is a two-way channel: patients book a queue, look up their own treatment history and medication instructions, and ask questions — and after the visit the same line carries follow-ups and summaries. A returning patient arrives already known, greeted, not processed. And a walk-in with no queue ahead starts right away — register, BP, prescreen, straight in to the doctor." },
+        { t: "art", src: "/images/kindmore-line.png", phone: true, label: "LINE OA — the clinic's front door: book, history, and post-visit follow-up (dummy data)" },
         { t: "sub", text: "2 · Stations flow forward, never backward." },
         { t: "p", text: "The physical path mirrors the service path: registration → exam room → payment & pharmacy, in one direction. No patient walks back to a previous counter — because every backward step in space is a queue reborn." },
         { t: "sub", text: "3 · The doctor is briefed before the door opens." },

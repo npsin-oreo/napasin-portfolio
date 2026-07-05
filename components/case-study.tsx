@@ -11,13 +11,14 @@ export type Block =
   | { t: "sub"; text: string } // small bold lead-in inside a section
   | { t: "list"; items: string[] }
   | { t: "table"; rows: [string, string][] }
-  | { t: "art"; label: string; src?: string }; // artifact — real image when src is set, else placeholder
+  | { t: "art"; label: string; src?: string; phone?: boolean }; // artifact — real image when src is set (phone = portrait frame), else placeholder
 
 export type Section = { n: string; title: string; blocks: Block[] };
 
 export type CaseData = {
   slug: string; // this case's own route — used to exclude it from the "more work" footer
   cover?: string; // path to a cover image in /public; falls back to a branded poster
+  coverFit?: "cover" | "contain"; // "cover" fills the frame (photos); "contain" (default) frames mockups on a backdrop
   brandLogo?: string; // product logo shown as a small brand chip in the hero
   kicker: string;
   title: string;
@@ -63,7 +64,7 @@ export function CaseStudy({ data }: { data: CaseData }) {
         </section>
 
         {/* cover */}
-        <Cover slug={data.slug} title={data.title} src={data.cover} />
+        <Cover slug={data.slug} title={data.title} src={data.cover} fit={data.coverFit} />
 
         {/* snapshot */}
         <dl className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-2">
@@ -143,12 +144,24 @@ export function CaseStudy({ data }: { data: CaseData }) {
   );
 }
 
-function Cover({ slug, title, src }: { slug: string; title: string; src?: string }) {
+function Cover({ slug, title, src, fit }: { slug: string; title: string; src?: string; fit?: "cover" | "contain" }) {
   const ref = ALL_CASES.find((c) => c.slug === slug);
   const num = ref?.num ?? "";
   const tag = ref?.tag ?? "";
 
+  if (src && fit === "cover") {
+    // Photo — fill the frame edge to edge.
+    return (
+      <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-card border border-border bg-surface-2">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={src} alt={`${title} — cover`} className="absolute inset-0 h-full w-full object-cover" />
+        <div aria-hidden className="pointer-events-none absolute inset-0 rounded-card ring-1 ring-inset ring-white/5" />
+      </div>
+    );
+  }
+
   if (src) {
+    // Mockup / screenshot — contained on a branded backdrop.
     return (
       <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-card border border-border bg-gradient-to-br from-surface-2 via-surface to-bg">
         <div
@@ -285,6 +298,20 @@ function BlockView({ b }: { b: Block }) {
         </div>
       );
     case "art":
+      if (b.src && b.phone) {
+        return (
+          <figure className="overflow-hidden rounded-card border border-border bg-gradient-to-br from-surface-2 to-bg">
+            <div className="mx-auto max-w-[288px] px-6 pt-8">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={b.src} alt={b.label} className="block w-full rounded-[28px] border border-border shadow-xl shadow-black/30" />
+            </div>
+            <figcaption className="mt-7 flex items-center gap-2 border-t border-border px-4 py-3 font-mono text-xs text-muted/70">
+              <ImageFrame aria-hidden className="size-3.5 shrink-0" />
+              {b.label}
+            </figcaption>
+          </figure>
+        );
+      }
       if (b.src) {
         return (
           <figure className="overflow-hidden rounded-card border border-border bg-surface">
