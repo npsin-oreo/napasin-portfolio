@@ -47,10 +47,16 @@ export default function Home() {
             <p className="px-4 py-3 font-sans text-sm text-muted">A few quick proof points</p>
             <div className="flex flex-col gap-2">
               {PROOF.map((p) => (
-                <div key={p.stat} className="flex items-center gap-4 rounded-item bg-bg p-4">
+                <div key={p.stat} className="flex items-center gap-3 rounded-item bg-bg p-4">
                   <Check className="size-5 shrink-0 text-accent" />
-                  <span className="min-w-[72px] font-mono text-2xl text-fg">{p.stat}</span>
-                  <span className="text-base text-muted">{p.label}</span>
+                  <span
+                    className={`shrink-0 whitespace-nowrap font-mono text-fg ${
+                      p.stat.length > 8 ? "text-xl" : "min-w-[72px] text-2xl"
+                    }`}
+                  >
+                    {p.stat}
+                  </span>
+                  <span className="truncate text-base text-muted">{p.label}</span>
                 </div>
               ))}
             </div>
