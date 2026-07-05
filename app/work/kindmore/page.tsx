@@ -88,7 +88,7 @@ const data: CaseData = {
       blocks: [
         { t: "p", text: "Launch wasn't the finish line — it was the start of the measurement loop. Every station is timed continuously. Every week, the numbers are reviewed, root causes analyzed, and findings fed back into the design." },
         { t: "p", text: "One example: the analysis showed ~76% of consultation delays trace to a single physical constraint — the clinic has one exam room. When patients arrive together, everything funnels through that one door, and the doctor absorbs the full mix through it: routine consults, minor procedures, and medical certificates, each a different length. No amount of UI polish fixes that; it became a facilities decision. Measuring tells you which problems are design problems and which are building problems." },
-        { t: "art", label: "Measurement loop — measure → analyze → redesign" },
+        { t: "art", src: "/images/kindmore-measure.jpg", label: "Every station timed continuously; reviewed weekly, root-caused, fed back into the design (illustrative)" },
       ],
     },
     {

@@ -33,7 +33,7 @@ const data: CaseData = {
         { t: "p", text: "But a call center scales in one currency only: people. Twenty agents can take twenty calls. Quality holds only as long as humans can hold it — through fatigue, turnover, and training cycles. The ceiling is structural, and business growth keeps pressing against it." },
         { t: "callout", text: "The question was never “how do we replace agents?” It was “how do we break the 1-person-1-call ceiling — without losing the human quality that makes calls work?”" },
         { t: "p", text: "The vision: AI agents absorb the routine at scale — reminders, notifications, prescreening — so the same twenty humans handle the conversations that genuinely need a person. And in this industry there's a catch that shapes everything: outbound calls from financial companies already fight suspicion. A call that feels robotic doesn't just fail — it gets hung up on before it starts." },
-        { t: "art", label: "Capacity — 20 : 20 → 20 : ∞ (with human escalation)" },
+        { t: "art", src: "/images/va-capacity.jpg", label: "Human call centers scale in one currency — people; the ceiling is structural (illustrative)" },
       ],
     },
     {
@@ -44,7 +44,7 @@ const data: CaseData = {
         { t: "p", text: "Conceptually, the system works on two levers: intent — understanding what the caller means and where the conversation should go — and lag — managing the rhythm and response timing so the exchange flows at a human pace. A reply that's correct but lands half a second too late breaks the illusion of conversation; the design of timing matters as much as the design of words." },
         { t: "sub", text: "The tension I chose to address head-on" },
         { t: "p", text: "The better the voice, the louder the question: should a caller know they're talking to an AI? In finance — where trust is the entire product — we treated naturalness and transparency as design constraints to balance, not a trade to win. The call is made in the first seconds: the agent opens by identifying itself as an intelligent assistant. Disclosure isn't buried in fine print or left for the caller to infer — it's the first thing said, so the naturalness that follows is earned honestly, never used to deceive." },
-        { t: "art", label: "Waveform + fictional call script" },
+        { t: "art", src: "/images/va-voice.jpg", label: "In a voice product, the voice is the interface — tone, pacing, and timing (illustrative)" },
       ],
     },
     {
@@ -73,7 +73,7 @@ const data: CaseData = {
         { t: "sub", text: "Bilingual guidelines" },
         { t: "p", text: "The guidelines run in Thai and English — and the hard part isn't translation, it's register. Thai formal enough for a bank must still sound like a person, not a legal notice. Every voice-and-tone rule had to hold in both languages, for both readers: the enterprise client reviewing the brand, and the team writing what the agent says." },
         { t: "quote", text: "Brand voice and agent voice are the same design problem. A brand that promises “human, professional, calm” and an agent that sounds hurried break the same trust." },
-        { t: "art", label: "Logomark + brand guideline spreads" },
+        { t: "art", src: "/images/virtual-agent-logo.png", light: true, label: "Virtual Agent logomark — the mark I designed: triangles building a “V,” extended into a cursor for “Agent”" },
       ],
     },
     {

@@ -37,7 +37,7 @@ const data: CaseData = {
         { t: "p", text: "For the organizations and their analysts: a set of purpose-built dashboards, each screen reporting one topic for one user group, so depth never collapses into a single overloaded view. For the public: a separate, plain-language AI search that reports the situation openly — the same intelligence, reshaped for someone who just wants to know how big the problem is and whether they're at risk." },
         { t: "sub", text: "AI-assisted query, with its seams visible" },
         { t: "p", text: "The AI layer lets users ask questions in plain language and get summarized answers from aggregated data — turning “query skill” from a gatekeeper into a given. The design work was trust calibration: because an answer is stitched together from several organizations' data, it carries its provenance with it. Each part of a summary is tagged with the source it was drawn from, so a reader can see the seams — which slice of the picture came from where — instead of trusting one confident-sounding paragraph." },
-        { t: "art", label: "Silos → one picture (abstract, fictional data)" },
+        { t: "art", src: "/images/scam-network.jpg", label: "Fragmented data across many organizations → one readable picture (illustrative)" },
       ],
     },
     {

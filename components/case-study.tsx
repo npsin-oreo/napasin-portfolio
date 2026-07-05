@@ -12,7 +12,7 @@ export type Block =
   | { t: "sub"; text: string } // small bold lead-in inside a section
   | { t: "list"; items: string[] }
   | { t: "table"; rows: [string, string][] }
-  | { t: "art"; label: string; src?: string; phone?: boolean }; // artifact — real image when src is set (phone = portrait frame), else placeholder
+  | { t: "art"; label: string; src?: string; phone?: boolean; light?: boolean }; // artifact — real image when src is set (phone = portrait frame, light = on a white card for logos), else placeholder
 
 export type Section = { n: string; title: string; blocks: Block[] };
 
@@ -294,6 +294,20 @@ function BlockView({ b }: { b: Block }) {
         </div>
       );
     case "art":
+      if (b.src && b.light) {
+        return (
+          <figure className="overflow-hidden rounded-card border border-border">
+            <div className="grid place-items-center bg-white px-8 py-16">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={b.src} alt={b.label} className="max-h-24 w-auto" />
+            </div>
+            <figcaption className="flex items-center gap-2 border-t border-border px-4 py-3 font-mono text-xs text-muted/70">
+              <ImageFrame aria-hidden className="size-3.5 shrink-0" />
+              {b.label}
+            </figcaption>
+          </figure>
+        );
+      }
       if (b.src && b.phone) {
         return (
           <figure className="overflow-hidden rounded-card border border-border bg-gradient-to-br from-surface-2 to-bg">

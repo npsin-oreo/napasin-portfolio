@@ -8,7 +8,7 @@ import { Check, ArrowDown, ArrowRight, ArrowUpRight, Download, Github, Linkedin 
 const PROOF = [
   { stat: "7 yrs", label: "designing" },
   { stat: "In prod", label: "AI medical scribe" },
-  { stat: "~20 min", label: "clinic visit, not a day" },
+  { stat: "Craft → Systems", label: "one continuous thread" },
 ];
 
 export default function Home() {

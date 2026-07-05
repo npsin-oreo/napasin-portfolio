@@ -58,7 +58,7 @@ const data: CaseData = {
         { t: "sub", text: "Gate 10 — Render structure." },
         { t: "p", text: "Some failures are invisible in source: a control that renders the wrong size, a desktop layout stuck in a single mobile column — correct code that still ships broken. Only rendering catches them, so Playwright renders every prototype at mobile and desktop widths and audits the actual pixels. Good gates aren't designed from theory; they're scar tissue from real failures." },
         { t: "p", text: "Beyond pass/fail, every prototype gets a scored critique: seven weighted dimensions, Nielsen's ten heuristics, a banned-defaults list — and a judge pass with one hard rule: beauty can't rescue broken. If the judge fails a prototype on function, its score caps at 2.0 no matter how good it looks. And one script is the only door out of the pipeline — the audit can't be skipped, and can't be forgotten." },
-        { t: "art", label: "Audit report — a build blocked at the gate" },
+        { t: "art", src: "/images/designops-audit.jpg", label: "Every gate is a script, not a glance — exit 1 physically stops the pipeline (illustrative)" },
       ],
     },
     {
