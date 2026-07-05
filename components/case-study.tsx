@@ -17,6 +17,7 @@ export type Section = { n: string; title: string; blocks: Block[] };
 
 export type CaseData = {
   slug: string; // this case's own route — used to exclude it from the "more work" footer
+  cover?: string; // path to a cover image in /public; falls back to a branded poster
   kicker: string;
   title: string;
   subhead: string;
@@ -51,6 +52,9 @@ export function CaseStudy({ data }: { data: CaseData }) {
             </div>
           )}
         </section>
+
+        {/* cover */}
+        <Cover slug={data.slug} title={data.title} src={data.cover} />
 
         {/* snapshot */}
         <dl className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-2">
@@ -127,6 +131,49 @@ export function CaseStudy({ data }: { data: CaseData }) {
       </main>
       <Footer />
     </>
+  );
+}
+
+function Cover({ slug, title, src }: { slug: string; title: string; src?: string }) {
+  const ref = ALL_CASES.find((c) => c.slug === slug);
+  const num = ref?.num ?? "";
+  const tag = ref?.tag ?? "";
+
+  if (src) {
+    return (
+      <div className="mt-10 overflow-hidden rounded-card border border-border">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={src} alt={`${title} — cover`} className="aspect-[16/9] w-full object-cover" />
+      </div>
+    );
+  }
+
+  // Branded poster placeholder until a real cover image is dropped in.
+  return (
+    <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-card border border-border bg-gradient-to-br from-surface-2 via-surface to-bg">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(130%_110%_at_100%_0%,color-mix(in_oklab,var(--color-accent)_16%,transparent),transparent)]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(90%_90%_at_0%_100%,color-mix(in_oklab,var(--color-accent)_8%,transparent),transparent)]"
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -bottom-10 right-4 select-none font-mono text-[11rem] leading-none text-fg/[0.05] sm:text-[15rem]"
+      >
+        {num}
+      </span>
+      <div className="absolute inset-0 flex flex-col justify-end p-8">
+        <span className="font-mono text-xs uppercase tracking-wide text-accent">
+          {num} · {tag}
+        </span>
+        <span className="mt-2 max-w-[26ch] text-2xl font-medium leading-tight text-fg/90 sm:text-3xl">
+          {title}
+        </span>
+      </div>
+    </div>
   );
 }
 
