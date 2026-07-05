@@ -9,6 +9,8 @@ export const metadata: Metadata = {
 
 const data: CaseData = {
   slug: "/work/scam-insight",
+  cover: "/images/scam-cover.jpg",
+  coverFit: "cover",
   kicker: "Short case · Data platform · Public communication",
   title: "Making invisible damage visible",
   subhead:

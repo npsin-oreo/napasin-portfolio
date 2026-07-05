@@ -9,6 +9,9 @@ export const metadata: Metadata = {
 
 const data: CaseData = {
   slug: "/work/virtual-agent",
+  cover: "/images/virtual-agent-cover.jpg",
+  coverFit: "cover",
+  brandLogo: "/images/virtual-agent-logo.png",
   kicker: "AI Product + Brand · Enterprise voice",
   title: "Designing a voice, not a bot",
   subhead:

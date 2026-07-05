@@ -9,6 +9,8 @@ export const metadata: Metadata = {
 
 const data: CaseData = {
   slug: "/work/designops",
+  cover: "/images/designops-cover.jpg",
+  coverFit: "cover",
   kicker: "DesignOps · AI workflow · Open source",
   title: "Real gates, not vibes",
   subhead:
