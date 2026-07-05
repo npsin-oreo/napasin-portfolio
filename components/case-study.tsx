@@ -21,8 +21,8 @@ export type CaseData = {
   snapshot: [string, string][];
   impact?: string[];
   sections: Section[];
-  learnings: string[];
-  next: { title: string; href: string };
+  learnings?: string[];
+  next?: { title: string; href: string };
   repo?: string;
 };
 
@@ -99,29 +99,33 @@ export function CaseStudy({ data }: { data: CaseData }) {
         ))}
 
         {/* learnings */}
-        <section className="mt-16 border-t border-border pt-12">
-          <h2 className="text-2xl font-medium tracking-[-0.01em] text-fg sm:text-[28px]">What I learned</h2>
-          <ol className="mt-6 space-y-5">
-            {data.learnings.map((l, i) => (
-              <li key={i} className="flex gap-4">
-                <span className="mt-1 font-mono text-sm text-accent">{i + 1}</span>
-                <p className="text-lg leading-relaxed text-muted">{l}</p>
-              </li>
-            ))}
-          </ol>
-        </section>
+        {data.learnings && data.learnings.length > 0 && (
+          <section className="mt-16 border-t border-border pt-12">
+            <h2 className="text-2xl font-medium tracking-[-0.01em] text-fg sm:text-[28px]">What I learned</h2>
+            <ol className="mt-6 space-y-5">
+              {data.learnings.map((l, i) => (
+                <li key={i} className="flex gap-4">
+                  <span className="mt-1 font-mono text-sm text-accent">{i + 1}</span>
+                  <p className="text-lg leading-relaxed text-muted">{l}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
 
         {/* next */}
-        <Link
-          href={data.next.href}
-          className="group mt-16 flex items-center justify-between gap-6 rounded-card border border-border bg-surface p-6 transition-colors hover:border-accent/40"
-        >
-          <span>
-            <span className="font-mono text-xs uppercase tracking-wide text-muted">Next case</span>
-            <span className="mt-1.5 block text-lg font-medium text-fg">{data.next.title}</span>
-          </span>
-          <ArrowRight className="size-5 shrink-0 text-muted transition-all group-hover:translate-x-0.5 group-hover:text-accent" />
-        </Link>
+        {data.next && (
+          <Link
+            href={data.next.href}
+            className="group mt-16 flex items-center justify-between gap-6 rounded-card border border-border bg-surface p-6 transition-colors hover:border-accent/40"
+          >
+            <span>
+              <span className="font-mono text-xs uppercase tracking-wide text-muted">Next case</span>
+              <span className="mt-1.5 block text-lg font-medium text-fg">{data.next.title}</span>
+            </span>
+            <ArrowRight className="size-5 shrink-0 text-muted transition-all group-hover:translate-x-0.5 group-hover:text-accent" />
+          </Link>
+        )}
       </main>
       <Footer />
     </>
