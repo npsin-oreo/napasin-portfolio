@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 
@@ -90,13 +91,21 @@ export default function About() {
               people whose work leaves no room for error — doctors, nurses, and the teams behind them.
             </p>
           </div>
-          {/* portrait placeholder */}
+          {/* portrait */}
           <div className="hidden lg:block">
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-card border border-border bg-gradient-to-br from-surface-2 to-bg">
-              <div className="grid h-full w-full place-items-center">
-                <span aria-hidden className="font-mono text-8xl text-fg/[0.05]">O</span>
-              </div>
-              <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_0%,color-mix(in_oklab,var(--color-accent)_9%,transparent),transparent)]" />
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-card border border-border bg-surface-2">
+              <Image
+                src="/images/napasin-portrait.jpg"
+                alt="Napasin Intarayotha (O)"
+                fill
+                sizes="380px"
+                priority
+                className="object-cover"
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_100%,color-mix(in_oklab,var(--color-accent)_10%,transparent),transparent)]"
+              />
             </div>
           </div>
         </section>
