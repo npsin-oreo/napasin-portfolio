@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 
 const data: CaseData = {
   slug: "/work/presscribe",
+  cover: "/images/presscribe-cover.png",
   kicker: "AI Product Design · Clinical UX",
   title: "The best interface in the exam room is no interface",
   subhead:

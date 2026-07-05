@@ -141,9 +141,17 @@ function Cover({ slug, title, src }: { slug: string; title: string; src?: string
 
   if (src) {
     return (
-      <div className="mt-10 overflow-hidden rounded-card border border-border">
+      <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-card border border-border bg-gradient-to-br from-surface-2 via-surface to-bg">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_0%,color-mix(in_oklab,var(--color-accent)_12%,transparent),transparent)]"
+        />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={src} alt={`${title} — cover`} className="aspect-[16/9] w-full object-cover" />
+        <img
+          src={src}
+          alt={`${title} — cover`}
+          className="absolute inset-0 h-full w-full object-contain p-5 sm:p-8"
+        />
       </div>
     );
   }
