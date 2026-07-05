@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { CASES, MORE_WORK, CONTACT } from "@/lib/cases";
+import { CoverThumb } from "@/components/cover-thumb";
 import { Check, ArrowDown, ArrowRight, ArrowUpRight, Download, Github, Linkedin } from "@/components/icons";
 
 const PROOF = [
@@ -70,12 +71,7 @@ export default function Home() {
                 href={c.slug}
                 className="group flex flex-col overflow-hidden rounded-card border border-border bg-surface transition-colors hover:border-accent/40"
               >
-                <div className="relative grid aspect-[16/10] place-items-center overflow-hidden border-b border-border bg-gradient-to-br from-surface-2 to-bg">
-                  <span aria-hidden className="pointer-events-none select-none font-mono text-7xl text-fg/[0.04]">
-                    0{i + 1}
-                  </span>
-                  <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_100%_0%,color-mix(in_oklab,var(--color-accent)_10%,transparent),transparent)]" />
-                </div>
+                <CoverThumb cover={c.cover} coverFit={c.coverFit} num={`0${i + 1}`} />
                 <div className="flex flex-1 flex-col p-6">
                   <p className="font-mono text-xs uppercase tracking-wide text-muted">{c.tag}</p>
                   <h3 className="mt-3 text-xl font-medium leading-snug text-fg">{c.title}</h3>
@@ -92,9 +88,17 @@ export default function Home() {
           {/* more work — scam */}
           <Link
             href={MORE_WORK.slug}
-            className="group mt-5 flex flex-col gap-2 rounded-card border border-dashed border-border bg-surface/40 p-6 transition-colors hover:border-accent/40 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+            className="group mt-5 flex flex-col gap-5 overflow-hidden rounded-card border border-dashed border-border bg-surface/40 p-6 transition-colors hover:border-accent/40 sm:flex-row sm:items-center sm:gap-6"
           >
-            <div>
+            <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-item border border-border bg-surface-2 sm:aspect-[4/3] sm:w-44">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={MORE_WORK.cover}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+              />
+            </div>
+            <div className="flex-1">
               <p className="font-mono text-xs uppercase tracking-wide text-muted">More work · {MORE_WORK.tag}</p>
               <h3 className="mt-2 text-lg font-medium text-fg">{MORE_WORK.title}</h3>
               <p className="mt-2 max-w-[70ch] text-sm leading-relaxed text-muted">{MORE_WORK.blurb}</p>

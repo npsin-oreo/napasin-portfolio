@@ -3,6 +3,7 @@ import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { ArrowUpRight, Quote, Sparkle, ImageFrame } from "@/components/icons";
 import { ALL_CASES } from "@/lib/cases";
+import { CoverThumb } from "@/components/cover-thumb";
 
 export type Block =
   | { t: "p"; text: string }
@@ -219,12 +220,7 @@ function MoreWork({ current }: { current: string }) {
             href={c.slug}
             className="group flex flex-col overflow-hidden rounded-card border border-border bg-surface transition-colors hover:border-accent/40"
           >
-            <div className="relative grid aspect-[16/10] place-items-center overflow-hidden border-b border-border bg-gradient-to-br from-surface-2 to-bg">
-              <span aria-hidden className="pointer-events-none select-none font-mono text-6xl text-fg/[0.04]">
-                {c.num}
-              </span>
-              <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_100%_0%,color-mix(in_oklab,var(--color-accent)_10%,transparent),transparent)]" />
-            </div>
+            <CoverThumb cover={c.cover} coverFit={c.coverFit} num={c.num} />
             <div className="flex flex-1 flex-col p-6">
               <p className="font-mono text-xs uppercase tracking-wide text-muted">
                 {c.num} · {c.tag}
