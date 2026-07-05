@@ -86,5 +86,5 @@ export const CONTACT = {
   phoneHref: "tel:+66632097908",
   linkedin: "https://www.linkedin.com/in/napasin-intarayotha-76b7952b6",
   github: "https://github.com/npsin-oreo",
-  resume: "/resume.pdf",
+  resume: "/resume",
 };

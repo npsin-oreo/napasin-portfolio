@@ -38,3 +38,40 @@ body {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
+
+/* ── A4 resume sheet ─────────────────────────────────────────── */
+.a4 {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 15mm 16mm;
+  background: #ffffff;
+  color: #1b1d1a;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+.a4 ::selection {
+  background: color-mix(in oklab, #4cc296 30%, transparent);
+}
+
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .resume-backdrop {
+    background: #ffffff !important;
+    padding: 0 !important;
+  }
+  .a4 {
+    box-shadow: none !important;
+    margin: 0 !important;
+    width: auto !important;
+    min-height: auto !important;
+  }
+  @page {
+    size: A4;
+    margin: 0;
+  }
+}

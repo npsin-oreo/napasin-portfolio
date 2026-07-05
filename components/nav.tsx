@@ -12,7 +12,7 @@ export function Nav() {
         <div className="flex items-center gap-1 font-mono text-sm text-muted">
           <WorkMenu />
           <Link href="/about" className="rounded-full px-3 py-2 transition-colors hover:text-fg">About</Link>
-          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="rounded-full px-3 py-2 transition-colors hover:text-fg">Resume</a>
+          <a href={CONTACT.resume} target="_blank" rel="noopener noreferrer" className="rounded-full px-3 py-2 transition-colors hover:text-fg">Resume</a>
           <a
             href={CONTACT.linkedin}
             target="_blank"
