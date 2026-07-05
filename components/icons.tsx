@@ -74,6 +74,53 @@ export function ImageFrame(p: P) {
     </svg>
   );
 }
+export function Compass(p: P) {
+  return (
+    <svg {...base(p)}>
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M15.5 8.5l-2.2 5-4.8 2 2.2-5 4.8-2z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+    </svg>
+  );
+}
+export function Briefcase(p: P) {
+  return (
+    <svg {...base(p)}>
+      <rect x="3" y="7.5" width="18" height="12" rx="2" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M8.5 7.5V6a2 2 0 012-2h3a2 2 0 012 2v1.5M3 12.5h18" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+export function Code(p: P) {
+  return (
+    <svg {...base(p)}>
+      <path d="M8 9l-3.5 3L8 15M16 9l3.5 3L16 15M13.5 6l-3 12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+export function GradCap(p: P) {
+  return (
+    <svg {...base(p)}>
+      <path d="M12 4L2.5 8.5 12 13l9.5-4.5L12 4z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <path d="M6 10.5V15c0 1.1 2.7 2.5 6 2.5s6-1.4 6-2.5v-4.5M20.5 9v4.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+export function Layers(p: P) {
+  return (
+    <svg {...base(p)}>
+      <path d="M12 3l9 4.5-9 4.5L3 7.5 12 3z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <path d="M3 12l9 4.5L21 12M3 16.5L12 21l9-4.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+export function Search(p: P) {
+  return (
+    <svg {...base(p)}>
+      <circle cx="11" cy="11" r="6" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M20 20l-4.2-4.2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
 export function Mail(p: P) {
   return (
     <svg {...base(p)}>
