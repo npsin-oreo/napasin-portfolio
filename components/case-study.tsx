@@ -11,7 +11,7 @@ export type Block =
   | { t: "sub"; text: string } // small bold lead-in inside a section
   | { t: "list"; items: string[] }
   | { t: "table"; rows: [string, string][] }
-  | { t: "art"; label: string }; // artifact placeholder
+  | { t: "art"; label: string; src?: string }; // artifact — real image when src is set, else placeholder
 
 export type Section = { n: string; title: string; blocks: Block[] };
 
@@ -276,6 +276,18 @@ function BlockView({ b }: { b: Block }) {
         </div>
       );
     case "art":
+      if (b.src) {
+        return (
+          <figure className="overflow-hidden rounded-card border border-border bg-surface">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={b.src} alt={b.label} className="block h-auto w-full" />
+            <figcaption className="flex items-center gap-2 border-t border-border px-4 py-3 font-mono text-xs text-muted/70">
+              <ImageFrame aria-hidden className="size-3.5 shrink-0" />
+              {b.label}
+            </figcaption>
+          </figure>
+        );
+      }
       return (
         <figure className="relative grid aspect-[16/9] place-items-center gap-3 overflow-hidden rounded-card border border-dashed border-border bg-gradient-to-br from-surface-2 to-bg">
           <ImageFrame aria-hidden className="size-7 text-muted/40" />

@@ -49,6 +49,7 @@ const data: CaseData = {
         ] },
         { t: "p", text: "We chose OPD doctors first, on two criteria. Impact — OPD sees the highest patient volume, so every minute saved multiplies across the most encounters. Feasibility — the exam room is a controlled environment: one doctor, one patient, a desk, predictable acoustics. The technology could succeed there first." },
         { t: "p", text: "The nurse track made it to wireframe prototypes tested with real nurses — far enough to see that the ward's hardware reality would betray the solution, so we shelved it. Knowing when not to build is a design decision too." },
+        { t: "art", src: "/images/presscribe-research.png", label: "Nurse-track research — journey map, service blueprint & flow (CORRECT framework)" },
       ],
     },
     {
@@ -76,7 +77,7 @@ const data: CaseData = {
           "Listening state — a quiet indicator with a live volume level: present enough to reassure the doctor it's hearing them, never covering the screen or drawing the eye.",
           "Privacy & consent, designed at the root — no audio is stored. PresScribe listens and summarizes; there is no recording to leak, archive, or subpoena. In the hospitals running it, that architecture shows: patients aren't anxious about the AI in the room.",
         ] },
-        { t: "art", label: "Wireframe evolution — “screen full of transcript” → “almost empty”" },
+        { t: "art", src: "/images/presscribe-flow.png", label: "PresScribe OPD — end-to-end user flow, wired screen by screen (dummy data)" },
       ],
     },
     {
@@ -95,7 +96,7 @@ const data: CaseData = {
         { t: "sub", text: "Failure states" },
         { t: "p", text: "The real test of AI UX isn't when the AI is right — it's how fast the doctor catches it when it's wrong. In practice, unclear audio is rarely the failure; the model recovers most of it. The error that matters is a mistranscribed drug name — and the design's answer isn't a clever alarm, it's the review screen: the one kind of mistake that can do harm is caught in the one place every note must pass, before it's signed." },
         { t: "quote", text: "Every note passes through the doctor's eyes before it touches the medical record. AI drafts. The doctor decides." },
-        { t: "art", label: "UI — review screen (dummy data)" },
+        { t: "art", src: "/images/presscribe-screens.png", label: "PresScribe OPD app — screens: recording, review & summary (dummy data)" },
       ],
     },
     {
