@@ -121,6 +121,20 @@ export function Search(p: P) {
     </svg>
   );
 }
+export function Menu(p: P) {
+  return (
+    <svg {...base(p)}>
+      <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+    </svg>
+  );
+}
+export function Close(p: P) {
+  return (
+    <svg {...base(p)}>
+      <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+    </svg>
+  );
+}
 export function Mail(p: P) {
   return (
     <svg {...base(p)}>

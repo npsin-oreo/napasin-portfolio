@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { WorkMenu } from "@/components/work-menu";
+import { MobileNav } from "@/components/mobile-nav";
 import { CONTACT } from "@/lib/cases";
 
 export function Nav() {
@@ -9,7 +10,7 @@ export function Nav() {
         <Link href="/" className="font-mono text-sm tracking-tight text-fg">
           NPSIN<span className="text-accent">.</span>
         </Link>
-        <div className="flex items-center gap-1 font-mono text-sm text-muted">
+        <div className="hidden items-center gap-1 font-mono text-sm text-muted md:flex">
           <WorkMenu />
           <Link href="/about" className="rounded-full px-3 py-2 transition-colors hover:text-fg">About</Link>
           <a href={CONTACT.resume} target="_blank" rel="noopener noreferrer" className="rounded-full px-3 py-2 transition-colors hover:text-fg">Resume</a>
@@ -22,6 +23,7 @@ export function Nav() {
             Say hi
           </a>
         </div>
+        <MobileNav />
       </nav>
     </header>
   );
