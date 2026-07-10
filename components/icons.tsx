@@ -153,6 +153,21 @@ export function Github(p: P) {
     </svg>
   );
 }
+export function Sun(p: P) {
+  return (
+    <svg {...base(p)}>
+      <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.75" />
+      <path d="M12 2.5v2.5M12 19v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M2.5 12H5M19 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+    </svg>
+  );
+}
+export function Moon(p: P) {
+  return (
+    <svg {...base(p)}>
+      <path d="M20 14.5A8 8 0 019.5 4 7 7 0 1020 14.5z" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 export function Linkedin(p: P) {
   return (
     <svg {...base(p)}>

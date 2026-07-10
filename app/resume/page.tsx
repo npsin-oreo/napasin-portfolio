@@ -3,29 +3,29 @@ import { ResumeToolbar } from "@/components/resume-toolbar";
 import { CONTACT } from "@/lib/cases";
 
 export const metadata: Metadata = {
-  title: "Résumé — Napasin Intarayotha (O)",
-  description: "Product & Service Designer — 7 years from brand craft to AI systems in healthcare and enterprise.",
+  title: "Résumé · Napasin Intarayotha (O)",
+  description: "Product & Service Designer. 7 years from brand craft to AI systems in healthcare and enterprise.",
 };
 
 const EXPERIENCE = [
   {
     role: "UX/UI Designer → Product & Service Design",
     org: "Looloo Technology",
-    period: "2022 — Present",
+    period: "2022 to Present",
     place: "Bangkok",
     bullets: [
-      "PresScribe (AI medical scribe): designed the clinical UX around trust, review, and failure states. In production at national scale — 30,000+ consultations documented across 45 hospitals, plus a standalone app.",
-      "KindMore Clinic: service-designed a real, operating clinic end-to-end — space, staff workflow, HIS, and measurement loop. A doctor visit dropped from a whole day to ~20 minutes; 5.0★ across 175 Google reviews.",
-      "Virtual Agent (enterprise voice AI): owned the full width — logomark, bilingual TH/EN brand guidelines, the agent-configuration platform, and the ops dashboard. MVP in pilot with insurance/banking/finance clients.",
+      "PresScribe (AI medical scribe): designed the clinical UX around trust, review, and failure states. In production at national scale: 30,000+ consultations documented across 45 hospitals, plus a standalone app.",
+      "KindMore Clinic: service-designed a real, operating clinic end to end: space, staff workflow, HIS, and measurement loop. A doctor visit dropped from a whole day to about 20 minutes; 5.0★ across 170+ Google reviews.",
+      "Virtual Agent (enterprise voice AI): owned the full width: logomark, bilingual TH/EN brand guidelines, the agent-configuration platform, and the ops dashboard. MVP in pilot with insurance/banking/finance clients.",
     ],
   },
   {
     role: "Graphic / Brand Designer",
-    org: "Branding · Packaging · PR agency",
-    period: "2019 — 2022",
+    org: "Branding, packaging, PR agency",
+    period: "2019 to 2022",
     place: "Bangkok",
     bullets: [
-      "Brand identity, packaging for OTOP community products, and PR-agency key visuals — all field-research-driven, from producer visits to shelf.",
+      "Brand identity, packaging for OTOP community products, and PR-agency key visuals, all field-research-driven, from producer visits to shelf.",
     ],
   },
 ];
@@ -46,8 +46,8 @@ const SKILLS: [string, string][] = [
 ];
 
 const EDUCATION = [
-  ["B.A., Communications Art & Design", "King Mongkut's Institute of Technology Ladkrabang (KMITL) — Faculty of Architecture, Art & Design"],
-  ["Advanced Design System — “One-to-Many”", "Day-1 Academy"],
+  ["B.A., Communications Art & Design", "King Mongkut's Institute of Technology Ladkrabang (KMITL). Faculty of Architecture, Art & Design"],
+  ["Advanced Design System, “One-to-Many”", "Day-1 Academy"],
   ["AI Design System Bootcamp", "Design Lasyyy"],
 ];
 
@@ -90,8 +90,8 @@ export default function Resume() {
         {/* summary */}
         <p className="mt-4 text-[11.5px] leading-[1.55] text-[#33352f]">
           Product &amp; service designer with <span className="font-semibold text-[#1b1d1a]">7 years</span> spanning brand
-          craft to AI systems. I design AI products for high-stakes work — healthcare and enterprise, where there is{" "}
-          <span className="font-semibold text-[#1b1d1a]">no room for error</span> — and build the DesignOps that keep that
+          craft to AI systems. I design AI products for high-stakes work: healthcare and enterprise, where there is{" "}
+          <span className="font-semibold text-[#1b1d1a]">no room for error</span>, and build the DesignOps that keep that
           quality honest. Research-first, backstage-first, verify-don&apos;t-trust.
         </p>
 
@@ -158,7 +158,7 @@ export default function Resume() {
             <div className="mt-5">
               <Section title="Languages" />
               <p className="text-[10.5px] leading-[1.6] text-[#4b4e49]">
-                Thai — native · English — professional working proficiency
+                Thai (native) · English (professional working proficiency)
               </p>
             </div>
           </div>

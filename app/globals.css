@@ -1,21 +1,56 @@
 @import "tailwindcss";
 
-/* Design tokens — from the Figma "Portfolio 2026" (warm near-black + mint accent, Geist + Geist Mono) */
+/* ── Design tokens ──────────────────────────────────────────────
+   Semantic tokens resolve to per-theme CSS variables so utilities
+   like bg-bg / text-fg / text-accent-text switch automatically when
+   [data-theme] flips. The brand mint stays a constant fill in both
+   modes (brand fidelity); the accent used as *text* is a separate,
+   darker token because mint-on-white only hits 2.2:1 (fails AA).   */
 @theme {
-  --color-bg: #151714;          /* page canvas — warm near-black */
-  --color-surface: #1e211d;     /* raised card */
-  --color-surface-2: #23271f;   /* nested / hover */
-  --color-border: #2b2f2a;      /* hairline */
-  --color-fg: #eceee9;          /* primary text — off-white */
-  --color-muted: #a2a69e;       /* secondary text — warm gray */
-  --color-accent: #4cc296;      /* mint — primary action / marks */
-  --color-accent-fg: #151714;   /* text on accent */
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);          /* fill / button background, brand mint, constant */
+  --color-accent-fg: var(--accent-fg);    /* text on an accent fill */
+  --color-accent-text: var(--accent-text);/* accent used as text / marks, theme-aware for contrast */
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-app-sans);
+  --font-mono: var(--font-app-mono);
+  --font-display: var(--font-app-display);
 
-  --radius-card: 24px;
-  --radius-item: 16px;
+  --radius-card: 20px;
+  --radius-item: 12px;
+}
+
+/* Dark is the default (also the no-JS fallback). */
+:root,
+[data-theme="dark"] {
+  --bg: #141613;          /* warm near-black canvas */
+  --surface: #1c1f1a;     /* raised card */
+  --surface-2: #232720;   /* nested / hover */
+  --border: #2c302a;      /* hairline */
+  --fg: #eceee9;          /* primary text */
+  --muted: #a2a69e;       /* secondary text */
+  --accent: #4cc296;      /* brand mint */
+  --accent-fg: #10211a;   /* on mint fill */
+  --accent-text: #4cc296; /* mint reads at 8.1:1 on dark, reuse it */
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg: #f7f8f5;          /* warm off-white (not pure white) */
+  --surface: #ffffff;     /* raised card */
+  --surface-2: #eef1ea;   /* nested / hover */
+  --border: #dde2d7;      /* hairline */
+  --fg: #191c16;          /* warm near-black text */
+  --muted: #575c51;       /* secondary text, 5.9:1 on bg */
+  --accent: #4cc296;      /* same brand mint fill */
+  --accent-fg: #10211a;   /* dark text on the light mint fill */
+  --accent-text: #0a7048; /* deep emerald, 5.7:1 on bg, AA pass */
+  color-scheme: light;
 }
 
 html {
@@ -30,6 +65,12 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 /* selection + focus in the brand accent */
 ::selection {
   background: color-mix(in oklab, var(--color-accent) 30%, transparent);
@@ -39,7 +80,9 @@ body {
   outline-offset: 2px;
 }
 
-/* ── A4 resume sheet ─────────────────────────────────────────── */
+/* ── A4 resume sheet ─────────────────────────────────────────────
+   The resume is a paper preview: always a white sheet on a dark
+   desk, regardless of site theme. It is print-emulating by design. */
 .a4 {
   width: 210mm;
   min-height: 297mm;

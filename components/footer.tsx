@@ -6,12 +6,12 @@ export function Footer() {
   return (
     <footer id="contact" className="mt-32 border-t border-border">
       <div className="mx-auto max-w-[1200px] px-6 py-20">
-        <p className="font-mono text-sm text-accent">Contact</p>
-        <h2 className="mt-4 max-w-[18ch] text-4xl font-medium tracking-[-0.02em] text-fg sm:text-5xl">
+        <p className="font-mono text-sm text-accent-text">Contact</p>
+        <h2 className="mt-4 max-w-[18ch] font-display text-[2.5rem] font-medium leading-[1.05] tracking-[-0.01em] text-fg sm:text-5xl">
           Let&apos;s talk
         </h2>
         <p className="mt-5 max-w-[52ch] text-lg leading-relaxed text-muted">
-          Open to senior product / service design roles — especially where AI meets real-world,
+          Open to senior product / service design roles, especially where AI meets real-world,
           high-stakes workflows. The fastest way to reach me is email.
         </p>
 
@@ -20,7 +20,7 @@ export function Footer() {
             href={`mailto:${CONTACT.email}`}
             className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-base text-accent-fg transition-opacity hover:opacity-90"
           >
-            <Mail className="size-4" /> Say hello
+            <Mail className="size-4" /> Get in touch
           </a>
           <a
             href={CONTACT.resume}
@@ -41,7 +41,7 @@ export function Footer() {
         </dl>
 
         <p className="mt-14 text-sm text-muted">
-          © 2026 Napasin Intarayotha (NPSIN) · Designed &amp; built by me — this site passed its own{" "}
+          © 2026 Napasin Intarayotha (NPSIN) · Designed &amp; built by me. This site passed its own{" "}
           <Link href="/work/designops" className="text-fg underline decoration-border underline-offset-4 hover:decoration-accent">
             10-gate design audit
           </Link>
@@ -75,7 +75,7 @@ function ContactRow({
         <span className="font-mono text-xs uppercase tracking-wide text-muted">{label}</span>
         <span className="text-base text-fg">{value}</span>
       </span>
-      <span className="text-muted transition-colors group-hover:text-accent">
+      <span className="text-muted transition-colors group-hover:text-accent-text">
         {icon ?? <ArrowUpRight className="size-4" />}
       </span>
     </a>

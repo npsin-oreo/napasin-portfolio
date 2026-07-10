@@ -8,9 +8,9 @@ import { Sparkle, Check, Layers, Compass, Search, Code, Briefcase, GradCap } fro
 type Icon = ComponentType<{ className?: string }>;
 
 export const metadata: Metadata = {
-  title: "About — Napasin Intarayotha (O)",
+  title: "About · Napasin Intarayotha (O)",
   description:
-    "Product & Service Designer in Bangkok. 7 years from brand craft to AI systems — healthcare products, real-world services, and design operations.",
+    "Product & Service Designer in Bangkok. 7 years from brand craft to AI systems: healthcare products, real-world services, and design operations.",
 };
 
 const TIMELINE = [
@@ -40,45 +40,45 @@ const PRINCIPLES: { icon: Icon; title: string; body: string }[] = [
   {
     icon: Sparkle,
     title: "AI augments. It doesn't replace.",
-    body: "Every AI product I design starts from the same question: what should the human own? AI drafts the clinical note — the doctor signs it. AI answers the routine call — the human takes the one that matters.",
+    body: "Every AI product I design starts from the same question: what should the human own? AI drafts the clinical note, the doctor signs it. AI answers the routine call, the human takes the one that matters.",
   },
   {
     icon: Check,
-    title: "Don't trust — verify.",
+    title: "Don't trust. Verify.",
     body: "“Looks right” isn't a quality bar. I measure: clinic visits timed at every station. Design output audited by 10 gates that recalculate everything themselves. If it can't be checked, it isn't done.",
   },
   {
     icon: Layers,
     title: "Design the backstage first.",
-    body: "The 20-minute clinic visit wasn't won in the exam room — it was won in the workflows around it. The best experience improvements are usually invisible to the person receiving them.",
+    body: "The 20-minute clinic visit wasn't won in the exam room; it was won in the workflows around it. The best experience improvements are usually invisible to the person receiving them.",
   },
 ];
 
 const EXPERIENCE = [
   {
-    period: "2022 – now",
+    period: "2022 to now",
     role: "UX/UI Designer → Product & Service Design",
     where:
-      "Looloo Technology — AI healthcare (PresScribe, KindMore Clinic), enterprise AI (Virtual Agent), and more.",
+      "Looloo Technology. AI healthcare (PresScribe, KindMore Clinic), enterprise AI (Virtual Agent), and more.",
   },
   {
-    period: "2019 – 2022",
+    period: "2019 to 2022",
     role: "Graphic / Brand Designer",
-    where: "Branding, packaging (OTOP), PR agency, key visuals — field-research-driven.",
+    where: "Branding, packaging (OTOP), PR agency, key visuals, all field-research-driven.",
   },
 ];
 
 const SKILLS: { icon: Icon; group: string; items: string }[] = [
-  { icon: Compass, group: "Design", items: "Product design (web/responsive) · Service design & blueprinting · Design systems & tokens · Brand identity & guidelines (TH/EN)" },
-  { icon: Search, group: "Research", items: "Field observation & shadowing · Journey mapping / swimlanes · Usability testing · Research synthesis" },
-  { icon: Sparkle, group: "AI & DesignOps", items: "AI product UX (trust, human-in-the-loop, failure states) · AI-assisted workflow design · Claude Code · Token Studio · Figma-to-code pipelines" },
-  { icon: Code, group: "Tools & code", items: "Figma suite · Adobe suite · Next.js + shadcn/ui · Git/GitHub · Playwright (visual audit)" },
+  { icon: Compass, group: "Design", items: "Product design (web/responsive), service design & blueprinting, design systems & tokens, brand identity & guidelines (TH/EN)" },
+  { icon: Search, group: "Research", items: "Field observation & shadowing, journey mapping / swimlanes, usability testing, research synthesis" },
+  { icon: Sparkle, group: "AI & DesignOps", items: "AI product UX (trust, human-in-the-loop, failure states), AI-assisted workflow design, Claude Code, Token Studio, Figma-to-code pipelines" },
+  { icon: Code, group: "Tools & code", items: "Figma suite, Adobe suite, Next.js + shadcn/ui, Git/GitHub, Playwright (visual audit)" },
 ];
 
 const EDUCATION = [
   { title: "B.A., Communications Art and Design", sub: "Faculty of Architecture, Art and Design, King Mongkut's Institute of Technology Ladkrabang (KMITL)" },
-  { title: "Advanced Design System — “One-to-Many” concept", sub: "Day-1 Academy — design-system structure, tokens, and rolling them out across a company" },
-  { title: "AI Design System Bootcamp", sub: "Design Lasyyy — design operations with AI tools" },
+  { title: "Advanced Design System, the “One-to-Many” concept", sub: "Day-1 Academy. Design-system structure, tokens, and rolling them out across a company" },
+  { title: "AI Design System Bootcamp", sub: "Design Lasyyy. Design operations with AI tools" },
 ];
 
 export default function About() {
@@ -89,14 +89,14 @@ export default function About() {
         {/* intro */}
         <section className="grid grid-cols-1 items-center gap-12 pt-20 pb-16 lg:grid-cols-[1fr_380px] lg:pt-28">
           <div>
-            <p className="font-mono text-sm text-accent">About</p>
-            <h1 className="mt-4 max-w-[16ch] text-[2.5rem] font-medium leading-[1.06] tracking-[-0.02em] text-fg sm:text-5xl lg:text-6xl">
-              Hi, I&apos;m Napasin — most people call me O.
+            <p className="font-mono text-sm text-accent-text">About</p>
+            <h1 className="mt-4 max-w-[16ch] font-display text-[2.75rem] font-medium leading-[1.04] tracking-[-0.01em] text-fg sm:text-[3.25rem] lg:text-6xl">
+              Hi, I&apos;m Napasin, most people call me O.
             </h1>
             <p className="mt-6 max-w-[48ch] text-lg leading-relaxed text-muted">
               Product &amp; Service Designer at Looloo Technology, Bangkok. I design AI products for
               people whose work leaves{" "}
-              <span className="font-medium text-fg">no room for error</span> — doctors, nurses, and
+              <span className="font-medium text-fg">no room for error</span>: doctors, nurses, and
               the teams behind them.
             </p>
             <div className="mt-8 flex flex-wrap gap-2">
@@ -126,11 +126,11 @@ export default function About() {
           </div>
         </section>
 
-        {/* career arc — timeline */}
+        {/* career arc: timeline */}
         <section className="mt-20 border-t border-border pt-14">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[300px_1fr] lg:gap-16">
             <div className="lg:sticky lg:top-24 lg:self-start">
-              <h2 className="text-3xl font-medium tracking-[-0.02em] text-fg sm:text-4xl">
+              <h2 className="font-display text-[2rem] font-medium leading-[1.1] tracking-[-0.01em] text-fg sm:text-[2.5rem]">
                 From craft to systems
               </h2>
               <p className="mt-4 max-w-[32ch] leading-relaxed text-muted">
@@ -138,19 +138,19 @@ export default function About() {
                 <span className="font-medium text-fg">understand the real work first, then design for it.</span>
               </p>
               <p className="mt-4 font-mono text-sm text-muted">
-                Craft <span className="text-accent">→</span> Product <span className="text-accent">→</span>{" "}
-                Service <span className="text-accent">→</span> Systems
+                Craft <span className="text-accent-text">→</span> Product <span className="text-accent-text">→</span>{" "}
+                Service <span className="text-accent-text">→</span> Systems
               </p>
             </div>
 
             <ol className="relative border-l border-border pl-10">
               {TIMELINE.map((e, i) => (
                 <li key={e.stage} className="relative pb-10 last:pb-0">
-                  <span className="absolute -left-10 top-0 grid size-8 -translate-x-1/2 place-items-center rounded-full border border-accent/30 bg-accent/[0.1] font-mono text-xs text-accent ring-4 ring-bg">
+                  <span className="absolute -left-10 top-0 grid size-8 -translate-x-1/2 place-items-center rounded-full border border-accent/30 bg-accent/[0.1] font-mono text-xs text-accent-text ring-4 ring-bg">
                     0{i + 1}
                   </span>
                   <p className="font-mono text-sm">
-                    <span className="text-accent">{e.stage}</span>{" "}
+                    <span className="text-accent-text">{e.stage}</span>{" "}
                     <span className="text-muted/70">· {e.tag}</span>
                   </p>
                   <p className="mt-3 max-w-[62ch] text-lg leading-relaxed text-muted">{e.body}</p>
@@ -166,7 +166,7 @@ export default function About() {
             {PRINCIPLES.map((p, i) => (
               <div key={i} className="flex flex-col rounded-card border border-border bg-surface p-6">
                 <div className="flex items-center justify-between">
-                  <span className="grid size-10 place-items-center rounded-item border border-accent/25 bg-accent/[0.08] text-accent">
+                  <span className="grid size-10 place-items-center rounded-item border border-accent/25 bg-accent/[0.08] text-accent-text">
                     <p.icon className="size-5" />
                   </span>
                   <span className="font-mono text-sm text-muted/50">0{i + 1}</span>
@@ -183,7 +183,7 @@ export default function About() {
           <div className="divide-y divide-border border-y border-border">
             {EXPERIENCE.map((e) => (
               <div key={e.period} className="grid grid-cols-1 gap-2 py-6 sm:grid-cols-[160px_1fr] sm:gap-8">
-                <span className="font-mono text-sm text-accent">{e.period}</span>
+                <span className="font-mono text-sm text-accent-text">{e.period}</span>
                 <div>
                   <h3 className="text-lg font-medium text-fg">{e.role}</h3>
                   <p className="mt-1.5 text-base leading-relaxed text-muted">{e.where}</p>
@@ -198,7 +198,7 @@ export default function About() {
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             {SKILLS.map((s) => (
               <div key={s.group} className="rounded-card border border-border bg-surface p-6">
-                <h3 className="flex items-center gap-2.5 font-mono text-sm text-accent">
+                <h3 className="flex items-center gap-2.5 font-mono text-sm text-accent-text">
                   <s.icon className="size-4" />
                   {s.group}
                 </h3>
@@ -229,10 +229,10 @@ function Section({ title, icon: Icon, children }: { title: string; icon: Icon; c
   return (
     <section className="mt-20 border-t border-border pt-14">
       <div className="mb-8 flex items-center gap-3">
-        <span className="grid size-9 shrink-0 place-items-center rounded-item border border-accent/25 bg-accent/[0.08] text-accent">
+        <span className="grid size-9 shrink-0 place-items-center rounded-item border border-accent/25 bg-accent/[0.08] text-accent-text">
           <Icon className="size-5" />
         </span>
-        <h2 className="text-2xl font-medium tracking-[-0.02em] text-fg sm:text-3xl">{title}</h2>
+        <h2 className="font-display text-[1.75rem] font-medium tracking-[-0.005em] text-fg sm:text-[2rem]">{title}</h2>
       </div>
       {children}
     </section>

@@ -30,7 +30,7 @@ export function CoverThumb({
   }
 
   if (cover) {
-    // Transparent mockup / screenshot — contain on the branded backdrop.
+    // Transparent mockup / screenshot: contain on the branded backdrop.
     return (
       <div className="relative grid aspect-[16/10] place-items-center overflow-hidden border-b border-border bg-gradient-to-br from-surface-2 to-bg">
         {/* eslint-disable-next-line @next/next/no-img-element */}

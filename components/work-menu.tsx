@@ -62,7 +62,7 @@ export function WorkMenu() {
                     active ? "bg-surface-2" : "hover:bg-surface-2"
                   }`}
                 >
-                  <span className="pt-0.5 font-mono text-sm text-accent">{c.num}</span>
+                  <span className="pt-0.5 font-mono text-sm text-accent-text">{c.num}</span>
                   <span className="min-w-0">
                     <span className="block text-[15px] font-medium leading-snug text-fg">
                       {c.title}

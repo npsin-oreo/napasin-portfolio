@@ -1,23 +1,26 @@
 import Link from "next/link";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
-import { ArrowUpRight, Quote, Sparkle, ImageFrame } from "@/components/icons";
+import { ArrowUpRight, ArrowRight, Quote, Sparkle, ImageFrame } from "@/components/icons";
 import { ALL_CASES } from "@/lib/cases";
 import { CoverThumb } from "@/components/cover-thumb";
 
 export type Block =
   | { t: "p"; text: string }
   | { t: "quote"; text: string }
-  | { t: "callout"; text: string } // standout key insight — heavier than a pull quote
+  | { t: "callout"; text: string } // standout key insight, heavier than a pull quote
   | { t: "sub"; text: string } // small bold lead-in inside a section
   | { t: "list"; items: string[] }
   | { t: "table"; rows: [string, string][] }
-  | { t: "art"; label: string; src?: string; phone?: boolean; light?: boolean }; // artifact — real image when src is set (phone = portrait frame, light = on a white card for logos), else placeholder
+  | { t: "metric"; items: { value: string; label: string }[] } // big mono numbers, pulls the hard evidence out of prose
+  | { t: "compare"; before: { value: string; label: string }; after: { value: string; label: string } } // before → after
+  | { t: "steps"; items: { label: string; text: string }[] } // sequenced moves; the verb-noun label is the content, not "Step 1"
+  | { t: "art"; label: string; src?: string; phone?: boolean; light?: boolean }; // artifact, real image when src is set (phone = portrait frame, light = on a white card for logos), else placeholder
 
 export type Section = { n: string; title: string; blocks: Block[] };
 
 export type CaseData = {
-  slug: string; // this case's own route — used to exclude it from the "more work" footer
+  slug: string; // this case's own route, used to exclude it from the "more work" footer
   cover?: string; // path to a cover image in /public; falls back to a branded poster
   coverFit?: "cover" | "contain"; // "cover" fills the frame (photos); "contain" (default) frames mockups on a backdrop
   brandLogo?: string; // product logo shown as a small brand chip in the hero
@@ -50,16 +53,16 @@ export function CaseStudy({ data }: { data: CaseData }) {
               </span>
             </div>
           )}
-          <p className={`${data.brandLogo ? "mt-5" : "mt-8"} font-mono text-sm text-accent`}>{data.kicker}</p>
-          <h1 className="mt-4 text-[2.25rem] font-medium leading-[1.08] tracking-[-0.02em] text-fg sm:text-5xl">
+          <p className={`${data.brandLogo ? "mt-5" : "mt-8"} font-mono text-sm text-accent-text`}>{data.kicker}</p>
+          <h1 className="mt-4 font-display text-[2.5rem] font-medium leading-[1.06] tracking-[-0.01em] text-fg sm:text-[3.25rem]">
             {data.title}
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-muted">{data.subhead}</p>
 
           {data.thesis && (
             <div className="mt-8 border-l-2 border-accent pl-5">
-              <p className="font-mono text-xs uppercase tracking-wide text-accent">Thesis</p>
-              <p className="mt-2 text-xl font-medium leading-snug text-fg">{data.thesis}</p>
+              <p className="font-mono text-xs uppercase tracking-wide text-accent-text">Thesis</p>
+              <p className="mt-2 font-display text-2xl font-medium leading-[1.25] text-fg">{data.thesis}</p>
             </div>
           )}
         </section>
@@ -101,15 +104,11 @@ export function CaseStudy({ data }: { data: CaseData }) {
         {/* sections */}
         {data.sections.map((s) => (
           <section key={s.n} className="mt-16 border-t border-border pt-12">
-            <div className="flex items-start gap-4">
-              <span className="grid size-9 shrink-0 place-items-center rounded-item border border-accent/25 bg-accent/[0.08] font-mono text-sm text-accent">
-                {s.n}
-              </span>
-              <h2 className="pt-1 text-2xl font-medium leading-snug tracking-[-0.01em] text-fg sm:text-[28px]">
-                {s.title}
-              </h2>
-            </div>
-            <div className="mt-6 space-y-5">
+            <span aria-hidden className="block h-1 w-10 rounded-full bg-accent" />
+            <h2 className="mt-5 max-w-[24ch] font-display text-[28px] font-medium leading-[1.12] tracking-[-0.005em] text-fg sm:text-[34px]">
+              {s.title}
+            </h2>
+            <div className="mt-7 space-y-5">
               {s.blocks.map((b, i) => (
                 <BlockView key={i} b={b} />
               ))}
@@ -121,13 +120,13 @@ export function CaseStudy({ data }: { data: CaseData }) {
         {data.learnings && data.learnings.length > 0 && (
           <section className="mt-16 border-t border-border pt-12">
             <div className="flex items-center gap-3">
-              <Sparkle className="size-5 text-accent" />
-              <h2 className="text-2xl font-medium tracking-[-0.01em] text-fg sm:text-[28px]">What I learned</h2>
+              <Sparkle className="size-5 text-accent-text" />
+              <h2 className="font-display text-[26px] font-medium text-fg sm:text-[30px]">What I learned</h2>
             </div>
             <ol className="mt-8 space-y-4">
               {data.learnings.map((l, i) => (
                 <li key={i} className="flex gap-4 rounded-card border border-border bg-surface p-5">
-                  <span className="grid size-8 shrink-0 place-items-center rounded-full border border-accent/25 bg-accent/[0.08] font-mono text-sm text-accent">
+                  <span className="grid size-8 shrink-0 place-items-center rounded-full border border-accent/25 bg-accent/[0.08] font-mono text-sm text-accent-text">
                     {i + 1}
                   </span>
                   <p className="pt-0.5 text-lg leading-relaxed text-muted">{l}</p>
@@ -137,7 +136,7 @@ export function CaseStudy({ data }: { data: CaseData }) {
           </section>
         )}
 
-        {/* next up — more work */}
+        {/* next up, more work */}
         <MoreWork current={data.slug} />
       </main>
       <Footer />
@@ -147,22 +146,21 @@ export function CaseStudy({ data }: { data: CaseData }) {
 
 function Cover({ slug, title, src, fit }: { slug: string; title: string; src?: string; fit?: "cover" | "contain" }) {
   const ref = ALL_CASES.find((c) => c.slug === slug);
-  const num = ref?.num ?? "";
   const tag = ref?.tag ?? "";
 
   if (src && fit === "cover") {
-    // Photo — fill the frame edge to edge.
+    // Photo, fill the frame edge to edge.
     return (
       <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-card border border-border bg-surface-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={src} alt={`${title} — cover`} className="absolute inset-0 h-full w-full object-cover" />
+        <img src={src} alt={`${title}, cover`} className="absolute inset-0 h-full w-full object-cover" />
         <div aria-hidden className="pointer-events-none absolute inset-0 rounded-card ring-1 ring-inset ring-white/5" />
       </div>
     );
   }
 
   if (src) {
-    // Mockup / screenshot — contained on a branded backdrop.
+    // Mockup / screenshot, contained on a branded backdrop.
     return (
       <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-card border border-border bg-gradient-to-br from-surface-2 via-surface to-bg">
         <div
@@ -172,7 +170,7 @@ function Cover({ slug, title, src, fit }: { slug: string; title: string; src?: s
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={src}
-          alt={`${title} — cover`}
+          alt={`${title}, cover`}
           className="absolute inset-0 h-full w-full object-contain p-5 sm:p-8"
         />
       </div>
@@ -190,16 +188,8 @@ function Cover({ slug, title, src, fit }: { slug: string; title: string; src?: s
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(90%_90%_at_0%_100%,color-mix(in_oklab,var(--color-accent)_8%,transparent),transparent)]"
       />
-      <span
-        aria-hidden
-        className="pointer-events-none absolute -bottom-10 right-4 select-none font-mono text-[11rem] leading-none text-fg/[0.05] sm:text-[15rem]"
-      >
-        {num}
-      </span>
       <div className="absolute inset-0 flex flex-col justify-end p-8">
-        <span className="font-mono text-xs uppercase tracking-wide text-accent">
-          {num} · {tag}
-        </span>
+        <span className="font-mono text-xs uppercase tracking-wide text-accent-text">{tag}</span>
         <span className="mt-2 max-w-[26ch] text-2xl font-medium leading-tight text-fg/90 sm:text-3xl">
           {title}
         </span>
@@ -212,7 +202,7 @@ function MoreWork({ current }: { current: string }) {
   const others = ALL_CASES.filter((c) => c.slug !== current);
   return (
     <section className="mt-20 border-t border-border pt-14">
-      <p className="font-mono text-sm text-accent">Next up · More work</p>
+      <p className="font-mono text-sm text-accent-text">Next up · More work</p>
       <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {others.map((c) => (
           <Link
@@ -225,8 +215,8 @@ function MoreWork({ current }: { current: string }) {
               <p className="font-mono text-xs uppercase tracking-wide text-muted">
                 {c.num} · {c.tag}
               </p>
-              <h3 className="mt-3 text-lg font-medium leading-snug text-fg">{c.title}</h3>
-              <span className="mt-5 inline-flex items-center gap-1.5 text-sm text-accent">
+              <h3 className="mt-3 font-display text-xl font-medium leading-[1.15] text-fg">{c.title}</h3>
+              <span className="mt-5 inline-flex items-center gap-1.5 text-sm text-accent-text">
                 Read case <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </span>
             </div>
@@ -245,14 +235,14 @@ function BlockView({ b }: { b: Block }) {
       return (
         <figure className="relative pl-6">
           <span aria-hidden className="absolute left-0 top-1 h-[calc(100%-0.5rem)] w-0.5 rounded bg-accent" />
-          <Quote aria-hidden className="mb-2 size-6 text-accent/60" />
-          <blockquote className="text-xl font-medium leading-snug text-fg">{b.text}</blockquote>
+          <Quote aria-hidden className="mb-2 size-6 text-accent-text/60" />
+          <blockquote className="font-display text-[1.6rem] font-medium italic leading-[1.3] text-fg">{b.text}</blockquote>
         </figure>
       );
     case "callout":
       return (
         <div className="relative flex gap-4 overflow-hidden rounded-card border border-accent/25 bg-accent/[0.06] p-6">
-          <Sparkle aria-hidden className="mt-1 size-5 shrink-0 text-accent" />
+          <Sparkle aria-hidden className="mt-1 size-5 shrink-0 text-accent-text" />
           <p className="text-lg font-medium leading-relaxed text-fg">{b.text}</p>
           <div
             aria-hidden
@@ -292,6 +282,55 @@ function BlockView({ b }: { b: Block }) {
             </tbody>
           </table>
         </div>
+      );
+    case "metric":
+      return (
+        <div
+          className={`grid grid-cols-1 gap-px overflow-hidden rounded-card border border-border bg-border ${
+            b.items.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3"
+          }`}
+        >
+          {b.items.map((m, i) => (
+            <div key={i} className="bg-surface px-5 py-6">
+              <div className="font-mono text-[2rem] font-medium leading-none tracking-tight text-fg tabular-nums sm:text-[2.5rem]">
+                {m.value}
+              </div>
+              <div className="mt-3 text-sm leading-snug text-muted">{m.label}</div>
+            </div>
+          ))}
+        </div>
+      );
+    case "compare":
+      return (
+        <div className="grid grid-cols-1 items-stretch gap-3 sm:grid-cols-[1fr_auto_1fr]">
+          <div className="rounded-item border border-border bg-surface px-5 py-5">
+            <div className="font-mono text-xs uppercase tracking-wide text-muted">{b.before.label}</div>
+            <div className="mt-2 font-mono text-2xl text-muted line-through decoration-border decoration-1">{b.before.value}</div>
+          </div>
+          <div className="grid place-items-center text-accent-text">
+            <ArrowRight aria-hidden className="size-6 rotate-90 sm:rotate-0" />
+          </div>
+          <div className="rounded-item border border-accent/30 bg-accent/[0.06] px-5 py-5">
+            <div className="font-mono text-xs uppercase tracking-wide text-accent-text">{b.after.label}</div>
+            <div className="mt-2 font-mono text-2xl font-medium text-fg">{b.after.value}</div>
+          </div>
+        </div>
+      );
+    case "steps":
+      return (
+        <ol className="space-y-5">
+          {b.items.map((s, i) => (
+            <li key={i} className="flex gap-4">
+              <span aria-hidden className="mt-0.5 shrink-0 font-mono text-sm text-accent-text tabular-nums">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <p className="font-medium text-fg">{s.label}</p>
+                <p className="mt-1.5 text-lg leading-relaxed text-muted">{s.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       );
     case "art":
       if (b.src && b.light) {

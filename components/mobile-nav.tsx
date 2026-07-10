@@ -62,7 +62,7 @@ export function MobileNav() {
                       active ? "bg-surface-2" : "hover:bg-surface-2"
                     }`}
                   >
-                    <span className="pt-0.5 font-mono text-sm text-accent">{c.num}</span>
+                    <span className="pt-0.5 font-mono text-sm text-accent-text">{c.num}</span>
                     <span className="min-w-0">
                       <span className="block text-[15px] font-medium leading-snug text-fg">
                         {c.title}
@@ -96,12 +96,10 @@ export function MobileNav() {
             </div>
 
             <a
-              href={CONTACT.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`mailto:${CONTACT.email}`}
               className="mt-4 flex items-center justify-center rounded-full bg-accent px-4 py-3 font-mono text-[15px] text-accent-fg transition-opacity hover:opacity-90"
             >
-              Say hi
+              Get in touch
             </a>
           </div>
         </div>,
