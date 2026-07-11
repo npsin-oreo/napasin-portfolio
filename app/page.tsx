@@ -10,7 +10,7 @@ const PROOF = [
   { stat: "30,000+", label: "AI-scribed consultations in production, across 45 hospitals" },
   { stat: "20 min", label: "A clinic visit I service-designed, down from a whole day" },
   { stat: "5.0★", label: "From 170+ reviews at the clinic it runs in" },
-  { stat: "176/176", label: "Selftests on my open-source DesignOps pipeline" },
+  { stat: "187/187", label: "Selftests on my open-source DesignOps pipeline" },
 ];
 
 export default function Home() {
@@ -22,38 +22,36 @@ export default function Home() {
       <Nav />
 
       <main className="mx-auto max-w-[1200px] px-6">
-        {/* ── hero ─────────────────────────────────────────────── */}
-        <section className="grid grid-cols-1 items-center gap-12 pt-16 pb-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:pt-24">
-          <div>
-            <p className="font-mono text-sm text-muted">Product &amp; Service Designer · Bangkok</p>
-            <h1 className="mt-6 max-w-[15ch] font-display text-[3rem] font-medium leading-[1.03] tracking-[-0.01em] text-fg sm:text-6xl lg:text-[72px] lg:leading-[1.0]">
-              I design AI people actually trust.
-            </h1>
-            <p className="mt-6 max-w-[48ch] text-lg leading-relaxed text-muted">
-              Seven years from brand craft to AI systems. Lately I design AI for healthcare and other
-              work that leaves no room for error. The numbers on the right are the point.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a href="#work" className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-base font-medium text-accent-fg transition-opacity hover:opacity-90">
-                See the work <ArrowDown className="size-4" />
-              </a>
-              <a href={CONTACT.resume} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-base text-fg transition-colors hover:bg-surface">
-                <Download className="size-4" /> Resume
-              </a>
-            </div>
+        {/* ── hero: centered claim ─────────────────────────────── */}
+        <section className="flex flex-col items-center pt-20 pb-16 text-center lg:pt-28 lg:pb-20">
+          <p className="font-mono text-sm text-muted">Product &amp; Service Designer · Bangkok</p>
+          <h1 className="mt-6 max-w-[18ch] font-display text-[3.25rem] font-medium leading-[1.02] tracking-[-0.015em] text-fg sm:text-7xl lg:text-[88px] lg:leading-[0.98]">
+            I design AI people actually trust.
+          </h1>
+          <p className="mt-8 max-w-[52ch] text-lg leading-relaxed text-muted sm:text-xl">
+            Seven years from brand craft to AI systems. Lately I design AI for healthcare and other
+            work that leaves no room for error.
+          </p>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+            <a href="#work" className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-base font-medium text-accent-fg transition-opacity hover:opacity-90">
+              See the work <ArrowDown className="size-4" />
+            </a>
+            <a href={CONTACT.resume} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-base text-fg transition-colors hover:bg-surface">
+              <Download className="size-4" /> Resume
+            </a>
           </div>
+        </section>
 
-          {/* evidence panel: the claim's proof, right beside it */}
-          <dl className="overflow-hidden rounded-card border border-border bg-surface">
-            {PROOF.map((p, i) => (
-              <div
-                key={p.stat}
-                className={`flex items-baseline gap-5 px-6 py-5 ${i > 0 ? "border-t border-border" : ""}`}
-              >
-                <dt className="w-[112px] shrink-0 font-mono text-[1.9rem] font-medium leading-none tracking-tight text-fg tabular-nums">
+        {/* ── evidence band: the claim's proof, measured ───────── */}
+        <section className="border-t border-border pt-10 pb-4">
+          <p className="text-center font-mono text-xs uppercase tracking-wide text-muted">In production, measured</p>
+          <dl className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-card border border-border bg-border lg:grid-cols-4">
+            {PROOF.map((p) => (
+              <div key={p.stat} className="bg-surface px-5 py-6">
+                <dt className="font-mono text-[2rem] font-medium leading-none tracking-tight text-fg tabular-nums sm:text-[2.25rem]">
                   {p.stat}
                 </dt>
-                <dd className="text-[15px] leading-snug text-muted">{p.label}</dd>
+                <dd className="mt-3 text-sm leading-snug text-muted">{p.label}</dd>
               </div>
             ))}
           </dl>

@@ -16,9 +16,9 @@ export const metadata: Metadata = {
     "Napasin (O), Product & Service Designer, 7 years in. I design AI people actually trust, for healthcare and other high-stakes work.",
 };
 
-// Runs synchronously in <head> before first paint: applies the saved theme
-// (or the OS preference for first-time visitors) so there is no light/dark flash.
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(!t)t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`;
+// Runs synchronously in <head> before first paint: applies the saved theme so
+// there is no light/dark flash. The site defaults to light for first-time visitors.
+const themeScript = `(function(){try{var t=localStorage.getItem("theme")||"light";document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`;
 
 export default function RootLayout({
   children,
@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="dark"
+      data-theme="light"
       suppressHydrationWarning
       className={`${appDisplay.variable} ${appSans.variable} ${appMono.variable} antialiased`}
     >

@@ -18,12 +18,6 @@ export function Nav() {
             <a href={CONTACT.resume} target="_blank" rel="noopener noreferrer" className="rounded-full px-3 py-2 transition-colors hover:text-fg">Resume</a>
           </div>
           <ThemeToggle />
-          <a
-            href={`mailto:${CONTACT.email}`}
-            className="ml-1 hidden rounded-full bg-accent px-4 py-2 font-mono text-sm text-accent-fg transition-opacity hover:opacity-90 md:inline-block"
-          >
-            Get in touch
-          </a>
           <MobileNav />
         </div>
       </nav>

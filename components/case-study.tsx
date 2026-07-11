@@ -15,6 +15,7 @@ export type Block =
   | { t: "metric"; items: { value: string; label: string }[] } // big mono numbers, pulls the hard evidence out of prose
   | { t: "compare"; before: { value: string; label: string }; after: { value: string; label: string } } // before → after
   | { t: "steps"; items: { label: string; text: string }[] } // sequenced moves; the verb-noun label is the content, not "Step 1"
+  | { t: "flow"; input: string; steps: { label: string; note: string; keywords: string[] }[]; output: string; gate?: string } // a vertical waterfall: input, cascading phases (each with its inner-stage keywords), output
   | { t: "art"; label: string; src?: string; phone?: boolean; light?: boolean }; // artifact, real image when src is set (phone = portrait frame, light = on a white card for logos), else placeholder
 
 export type Section = { n: string; title: string; blocks: Block[] };
@@ -331,6 +332,57 @@ function BlockView({ b }: { b: Block }) {
             </li>
           ))}
         </ol>
+      );
+    case "flow":
+      return (
+        <figure className="overflow-hidden rounded-card border border-border bg-surface">
+          {/* input */}
+          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-border px-5 py-3.5 sm:px-6">
+            <span className="font-mono text-xs uppercase tracking-wide text-muted">Goes in</span>
+            <span className="text-[15px] text-fg">{b.input}</span>
+          </div>
+          {/* waterfall: phases cascade down a rail, each showing the stages inside it */}
+          <ol className="px-5 py-6 sm:px-6">
+            {b.steps.map((s, i) => (
+              <li key={i} className="flex gap-4 pb-7 last:pb-0">
+                <div className="flex flex-col items-center">
+                  <span
+                    aria-hidden
+                    className="grid size-8 shrink-0 place-items-center rounded-full border border-accent/30 bg-accent/[0.08] font-mono text-xs text-accent-text tabular-nums"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  {i < b.steps.length - 1 && <span aria-hidden className="mt-1 w-px flex-1 bg-border" />}
+                </div>
+                <div className="min-w-0 pb-1">
+                  <p className="font-display text-lg font-medium leading-tight text-fg">{s.label}</p>
+                  <p className="mt-1 text-[13px] leading-snug text-muted">{s.note}</p>
+                  <div className="mt-2.5 flex flex-wrap gap-1.5">
+                    {s.keywords.map((k) => (
+                      <span
+                        key={k}
+                        className="rounded-full border border-border bg-bg px-2.5 py-1 font-mono text-[11px] leading-none text-muted"
+                      >
+                        {k}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ol>
+          {/* output */}
+          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-t border-border px-5 py-3.5 sm:px-6">
+            <span className="font-mono text-xs uppercase tracking-wide text-accent-text">Comes out</span>
+            <span className="text-[15px] text-fg">{b.output}</span>
+          </div>
+          {b.gate && (
+            <figcaption className="flex gap-2.5 border-t border-border bg-bg/40 px-5 py-3.5 text-[13px] leading-snug text-muted sm:px-6">
+              <Sparkle aria-hidden className="mt-0.5 size-4 shrink-0 text-accent-text" />
+              <span>{b.gate}</span>
+            </figcaption>
+          )}
+        </figure>
       );
     case "art":
       if (b.src && b.light) {

@@ -34,7 +34,7 @@ const PROJECTS = [
   {
     name: "DesignOps Pipeline",
     note: "Open source",
-    text: "Encoded my design judgment into a machine-runnable pipeline: project brief → working prototype, blocked by a 10-gate audit (WCAG recomputed, theme fidelity, render structure). 176/176 selftests, CI on every PR.",
+    text: "Encoded my design judgment into a machine-runnable pipeline: an 18-stage flow from product brief to working prototype, blocked by a 10-gate audit (WCAG recomputed, theme fidelity, render structure). 187/187 selftests, CI on every PR.",
   },
 ];
 

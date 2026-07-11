@@ -12,7 +12,7 @@ export type CaseCard = {
 };
 
 // The four main cases. Copy from content/homepage.md, kept in sync with the case files
-// (HIS partner names anonymized per the PresScribe edit; selftest count updated to 176).
+// (HIS partner names anonymized per the PresScribe edit; DesignOps selftest count synced to 187).
 export const CASES: CaseCard[] = [
   {
     slug: "/work/kindmore",
@@ -47,10 +47,10 @@ export const CASES: CaseCard[] = [
   {
     slug: "/work/designops",
     tag: "DesignOps · Open source",
-    title: "Real gates, not vibes",
+    title: "Design judgment, encoded",
     blurb:
       "I encoded my design judgment into a pipeline a machine can enforce: a project brief goes in, a working prototype comes out, blocked by a 10-gate audit until it meets the bar.",
-    impact: "10-gate audit, 176 of 176 selftests. Public repo you can clone and run.",
+    impact: "18-stage pipeline, 10-gate audit, 187 of 187 selftests. A public repo you can clone and run.",
     repo: "https://github.com/npsin-oreo/DesignOps-process",
     cover: "/images/designops-cover.jpg",
     coverFit: "cover",
@@ -76,7 +76,7 @@ export const ALL_CASES: CaseRef[] = [
   { slug: "/work/kindmore", num: "01", tag: "Service", title: "Designing the whole clinic", cover: "/images/kindmore-cover.jpg", coverFit: "cover" },
   { slug: "/work/presscribe", num: "02", tag: "Product", title: "The best interface is no interface", cover: "/images/presscribe-cover.png", coverFit: "contain" },
   { slug: "/work/virtual-agent", num: "03", tag: "Brand", title: "Designing a voice, not a bot", cover: "/images/virtual-agent-cover.jpg", coverFit: "cover" },
-  { slug: "/work/designops", num: "04", tag: "Process", title: "Real gates, not vibes", cover: "/images/designops-cover.jpg", coverFit: "cover" },
+  { slug: "/work/designops", num: "04", tag: "Process", title: "Design judgment, encoded", cover: "/images/designops-cover.jpg", coverFit: "cover" },
   { slug: "/work/scam-insight", num: "05", tag: "Data", title: "Making invisible damage visible", cover: "/images/scam-cover.jpg", coverFit: "cover" },
 ];
 
