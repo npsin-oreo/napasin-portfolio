@@ -6,6 +6,7 @@ import { ArrowUpRight, ArrowRight, Quote, Sparkle, ImageFrame } from "@/componen
 import { ALL_CASES } from "@/lib/cases";
 import { IMG_DIMS } from "@/lib/image-dims";
 import { CoverThumb } from "@/components/cover-thumb";
+import { Reveal, RevealStagger, RevealItem } from "@/components/reveal";
 
 // The case column is 820px wide at most; on small screens it fills the viewport.
 const CASE_SIZES = "(min-width: 852px) 820px, 100vw";
@@ -115,37 +116,41 @@ export function CaseStudy({ data }: { data: CaseData }) {
 
         {/* sections */}
         {data.sections.map((s) => (
-          <section key={s.n} className="mt-16 border-t border-border pt-12">
-            <span aria-hidden className="block h-1 w-10 rounded-full bg-accent" />
-            <h2 className="mt-5 max-w-[24ch] font-display text-[28px] font-medium leading-[1.12] tracking-[-0.005em] text-fg sm:text-[34px]">
-              {s.title}
-            </h2>
-            <div className="mt-7 space-y-5">
-              {s.blocks.map((b, i) => (
-                <BlockView key={i} b={b} />
-              ))}
-            </div>
-          </section>
+          <Reveal key={s.n} className="mt-16">
+            <section className="border-t border-border pt-12">
+              <span aria-hidden className="block h-1 w-10 rounded-full bg-accent" />
+              <h2 className="mt-5 max-w-[24ch] font-display text-[28px] font-medium leading-[1.12] tracking-[-0.005em] text-fg sm:text-[34px]">
+                {s.title}
+              </h2>
+              <div className="mt-7 space-y-5">
+                {s.blocks.map((b, i) => (
+                  <BlockView key={i} b={b} />
+                ))}
+              </div>
+            </section>
+          </Reveal>
         ))}
 
         {/* learnings */}
         {data.learnings && data.learnings.length > 0 && (
-          <section className="mt-16 border-t border-border pt-12">
-            <div className="flex items-center gap-3">
-              <Sparkle className="size-5 text-accent-text" />
-              <h2 className="font-display text-[26px] font-medium text-fg sm:text-[30px]">What I learned</h2>
-            </div>
-            <ol className="mt-8 space-y-4">
-              {data.learnings.map((l, i) => (
-                <li key={i} className="flex gap-4 rounded-card border border-border bg-surface p-5">
-                  <span className="grid size-8 shrink-0 place-items-center rounded-full border border-accent/25 bg-accent/[0.08] font-mono text-sm text-accent-text">
-                    {i + 1}
-                  </span>
-                  <p className="pt-0.5 text-lg leading-relaxed text-muted">{l}</p>
-                </li>
-              ))}
-            </ol>
-          </section>
+          <Reveal className="mt-16">
+            <section className="border-t border-border pt-12">
+              <div className="flex items-center gap-3">
+                <Sparkle className="size-5 text-accent-text" />
+                <h2 className="font-display text-[26px] font-medium text-fg sm:text-[30px]">What I learned</h2>
+              </div>
+              <ol className="mt-8 space-y-4">
+                {data.learnings.map((l, i) => (
+                  <li key={i} className="flex gap-4 rounded-card border border-border bg-surface p-5">
+                    <span className="grid size-8 shrink-0 place-items-center rounded-full border border-accent/25 bg-accent/[0.08] font-mono text-sm text-accent-text">
+                      {i + 1}
+                    </span>
+                    <p className="pt-0.5 text-lg leading-relaxed text-muted">{l}</p>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          </Reveal>
         )}
 
         {/* next up, more work */}
@@ -216,26 +221,27 @@ function MoreWork({ current }: { current: string }) {
   return (
     <section className="mt-20 border-t border-border pt-14">
       <p className="font-mono text-sm text-accent-text">Next up · More work</p>
-      <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <RevealStagger className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {others.map((c) => (
-          <Link
-            key={c.slug}
-            href={c.slug}
-            className="group flex flex-col overflow-hidden rounded-card border border-border bg-surface transition-colors hover:border-accent/40"
-          >
-            <CoverThumb cover={c.cover} coverFit={c.coverFit} num={c.num} />
-            <div className="flex flex-1 flex-col p-6">
-              <p className="font-mono text-xs uppercase tracking-wide text-muted">
-                {c.num} · {c.tag}
-              </p>
-              <h3 className="mt-3 font-display text-xl font-medium leading-[1.15] text-fg">{c.title}</h3>
-              <span className="mt-5 inline-flex items-center gap-1.5 text-sm text-accent-text">
-                Read case <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </span>
-            </div>
-          </Link>
+          <RevealItem key={c.slug} className="flex">
+            <Link
+              href={c.slug}
+              className="group flex w-full flex-col overflow-hidden rounded-card border border-border bg-surface transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl hover:shadow-black/5"
+            >
+              <CoverThumb cover={c.cover} coverFit={c.coverFit} num={c.num} />
+              <div className="flex flex-1 flex-col p-6">
+                <p className="font-mono text-xs uppercase tracking-wide text-muted">
+                  {c.num} · {c.tag}
+                </p>
+                <h3 className="mt-3 font-display text-xl font-medium leading-[1.15] text-fg">{c.title}</h3>
+                <span className="mt-5 inline-flex items-center gap-1.5 text-sm text-accent-text">
+                  Read case <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </span>
+              </div>
+            </Link>
+          </RevealItem>
         ))}
-      </div>
+      </RevealStagger>
     </section>
   );
 }

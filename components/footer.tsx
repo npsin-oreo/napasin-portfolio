@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { CONTACT } from "@/lib/cases";
+import { Reveal } from "@/components/reveal";
 import { Mail, Github, Linkedin, Download, ArrowUpRight } from "@/components/icons";
 
 export function Footer() {
   return (
     <footer id="contact" className="mt-32 border-t border-border">
-      <div className="mx-auto max-w-[1200px] px-6 py-20">
+      <Reveal className="mx-auto max-w-[1200px] px-6 py-20">
         <p className="font-mono text-sm text-accent-text">Contact</p>
         <h2 className="mt-4 max-w-[18ch] font-display text-[2.5rem] font-medium leading-[1.05] tracking-[-0.01em] text-fg sm:text-5xl">
           Let&apos;s talk
@@ -47,7 +48,7 @@ export function Footer() {
           </Link>
           .
         </p>
-      </div>
+      </Reveal>
     </footer>
   );
 }

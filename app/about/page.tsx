@@ -3,6 +3,7 @@ import type { ComponentType } from "react";
 import Image from "next/image";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { Reveal } from "@/components/reveal";
 import { Sparkle, Check, Layers, Compass, Search, Code, Briefcase, GradCap } from "@/components/icons";
 
 type Icon = ComponentType<{ className?: string }>;
@@ -88,7 +89,7 @@ export default function About() {
       <main id="main-content" className="mx-auto max-w-[1200px] px-6">
         {/* intro */}
         <section className="grid grid-cols-1 items-center gap-12 pt-20 pb-16 lg:grid-cols-[1fr_380px] lg:pt-28">
-          <div>
+          <Reveal>
             <p className="font-mono text-sm text-accent-text">About</p>
             <h1 className="mt-4 max-w-[16ch] font-display text-[2.75rem] font-medium leading-[1.04] tracking-[-0.01em] text-fg sm:text-[3.25rem] lg:text-6xl">
               Hi, I&apos;m Napasin, most people call me O.
@@ -106,15 +107,15 @@ export default function About() {
                 </span>
               ))}
             </div>
-          </div>
+          </Reveal>
           {/* portrait */}
-          <div className="hidden lg:block">
+          <div className="order-first mx-auto w-full max-w-[280px] sm:max-w-[320px] lg:order-none lg:max-w-none">
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-card border border-border bg-surface-2">
               <Image
                 src="/images/napasin-portrait.jpg"
                 alt="Napasin Intarayotha (O)"
                 fill
-                sizes="380px"
+                sizes="(min-width: 1024px) 380px, (min-width: 640px) 320px, 280px"
                 priority
                 className="object-cover"
               />
@@ -127,7 +128,8 @@ export default function About() {
         </section>
 
         {/* career arc: timeline */}
-        <section className="mt-20 border-t border-border pt-14">
+        <Reveal className="mt-20">
+        <section className="border-t border-border pt-14">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[300px_1fr] lg:gap-16">
             <div className="lg:sticky lg:top-24 lg:self-start">
               <h2 className="font-display text-[2rem] font-medium leading-[1.1] tracking-[-0.01em] text-fg sm:text-[2.5rem]">
@@ -159,6 +161,7 @@ export default function About() {
             </ol>
           </div>
         </section>
+        </Reveal>
 
         {/* how I work */}
         <Section title="How I work" icon={Compass}>
@@ -227,14 +230,16 @@ export default function About() {
 
 function Section({ title, icon: Icon, children }: { title: string; icon: Icon; children: React.ReactNode }) {
   return (
-    <section className="mt-20 border-t border-border pt-14">
-      <div className="mb-8 flex items-center gap-3">
-        <span className="grid size-9 shrink-0 place-items-center rounded-item border border-accent/25 bg-accent/[0.08] text-accent-text">
-          <Icon className="size-5" />
-        </span>
-        <h2 className="font-display text-[1.75rem] font-medium tracking-[-0.005em] text-fg sm:text-[2rem]">{title}</h2>
-      </div>
-      {children}
-    </section>
+    <Reveal className="mt-20">
+      <section className="border-t border-border pt-14">
+        <div className="mb-8 flex items-center gap-3">
+          <span className="grid size-9 shrink-0 place-items-center rounded-item border border-accent/25 bg-accent/[0.08] text-accent-text">
+            <Icon className="size-5" />
+          </span>
+          <h2 className="font-display text-[1.75rem] font-medium tracking-[-0.005em] text-fg sm:text-[2rem]">{title}</h2>
+        </div>
+        {children}
+      </section>
+    </Reveal>
   );
 }
