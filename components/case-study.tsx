@@ -1,9 +1,15 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { ArrowUpRight, ArrowRight, Quote, Sparkle, ImageFrame } from "@/components/icons";
 import { ALL_CASES } from "@/lib/cases";
+import { IMG_DIMS } from "@/lib/image-dims";
 import { CoverThumb } from "@/components/cover-thumb";
+
+// The case column is 820px wide at most; on small screens it fills the viewport.
+const CASE_SIZES = "(min-width: 852px) 820px, 100vw";
+const dims = (src: string): [number, number] => IMG_DIMS[src] ?? [1600, 900];
 
 export type Block =
   | { t: "p"; text: string }
@@ -40,7 +46,7 @@ export function CaseStudy({ data }: { data: CaseData }) {
   return (
     <>
       <Nav />
-      <main className="mx-auto max-w-[820px] px-6">
+      <main id="main-content" className="mx-auto max-w-[820px] px-6">
         {/* hero */}
         <section className="pt-16 lg:pt-24">
           <Link href="/#work" className="font-mono text-sm text-muted transition-colors hover:text-fg">
@@ -49,8 +55,13 @@ export function CaseStudy({ data }: { data: CaseData }) {
           {data.brandLogo && (
             <div className="mt-8">
               <span className="inline-flex items-center rounded-full bg-white px-4 py-2 shadow-sm">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={data.brandLogo} alt={`${data.title} logo`} className="h-6 w-auto" />
+                <Image
+                  src={data.brandLogo}
+                  alt={`${data.title} logo`}
+                  width={dims(data.brandLogo)[0]}
+                  height={dims(data.brandLogo)[1]}
+                  className="h-6 w-auto"
+                />
               </span>
             </div>
           )}
@@ -153,8 +164,7 @@ function Cover({ slug, title, src, fit }: { slug: string; title: string; src?: s
     // Photo, fill the frame edge to edge.
     return (
       <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-card border border-border bg-surface-2">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={src} alt={`${title}, cover`} className="absolute inset-0 h-full w-full object-cover" />
+        <Image src={src} alt={`${title}, cover`} fill priority sizes={CASE_SIZES} className="object-cover" />
         <div aria-hidden className="pointer-events-none absolute inset-0 rounded-card ring-1 ring-inset ring-white/5" />
       </div>
     );
@@ -168,11 +178,13 @@ function Cover({ slug, title, src, fit }: { slug: string; title: string; src?: s
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_0%,color-mix(in_oklab,var(--color-accent)_12%,transparent),transparent)]"
         />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={src}
           alt={`${title}, cover`}
-          className="absolute inset-0 h-full w-full object-contain p-5 sm:p-8"
+          fill
+          priority
+          sizes={CASE_SIZES}
+          className="object-contain p-5 sm:p-8"
         />
       </div>
     );
@@ -389,8 +401,7 @@ function BlockView({ b }: { b: Block }) {
         return (
           <figure className="overflow-hidden rounded-card border border-border">
             <div className="grid place-items-center bg-white px-8 py-16">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={b.src} alt={b.label} className="max-h-24 w-auto" />
+              <Image src={b.src} alt={b.label} width={dims(b.src)[0]} height={dims(b.src)[1]} sizes="(min-width: 852px) 400px, 60vw" className="h-auto max-h-24 w-auto" />
             </div>
             <figcaption className="flex items-center gap-2 border-t border-border px-4 py-3 font-mono text-xs text-muted/70">
               <ImageFrame aria-hidden className="size-3.5 shrink-0" />
@@ -403,8 +414,7 @@ function BlockView({ b }: { b: Block }) {
         return (
           <figure className="overflow-hidden rounded-card border border-border bg-gradient-to-br from-surface-2 to-bg">
             <div className="mx-auto max-w-[288px] px-6 pt-8">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={b.src} alt={b.label} className="block w-full rounded-[28px] border border-border shadow-xl shadow-black/30" />
+              <Image src={b.src} alt={b.label} width={dims(b.src)[0]} height={dims(b.src)[1]} sizes="288px" className="block h-auto w-full rounded-[28px] border border-border shadow-xl shadow-black/30" />
             </div>
             <figcaption className="mt-7 flex items-center gap-2 border-t border-border px-4 py-3 font-mono text-xs text-muted/70">
               <ImageFrame aria-hidden className="size-3.5 shrink-0" />
@@ -416,8 +426,7 @@ function BlockView({ b }: { b: Block }) {
       if (b.src) {
         return (
           <figure className="overflow-hidden rounded-card border border-border bg-surface">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={b.src} alt={b.label} className="block h-auto w-full" />
+            <Image src={b.src} alt={b.label} width={dims(b.src)[0]} height={dims(b.src)[1]} sizes={CASE_SIZES} className="block h-auto w-full" />
             <figcaption className="flex items-center gap-2 border-t border-border px-4 py-3 font-mono text-xs text-muted/70">
               <ImageFrame aria-hidden className="size-3.5 shrink-0" />
               {b.label}

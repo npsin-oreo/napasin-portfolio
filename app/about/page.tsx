@@ -85,7 +85,7 @@ export default function About() {
   return (
     <>
       <Nav />
-      <main className="mx-auto max-w-[1200px] px-6">
+      <main id="main-content" className="mx-auto max-w-[1200px] px-6">
         {/* intro */}
         <section className="grid grid-cols-1 items-center gap-12 pt-20 pb-16 lg:grid-cols-[1fr_380px] lg:pt-28">
           <div>
