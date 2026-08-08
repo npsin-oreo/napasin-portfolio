@@ -16,10 +16,14 @@ const data: CaseData = {
   subhead:
     "AI can produce design work 10× faster, and produce design slop 10× faster. So I encoded my judgment into a system: an 18-stage pipeline that takes a product brief to a working prototype, where every screen traces back to the requirement that created it, and nothing ships that fails a 10-gate audit. It's open source, so don't take my word for it. Clone it and run it.",
   thesis: "The question isn't “how do we make AI generate better?” It's “how do we make sure bad work can't reach handoff?” Stop trusting the output. Gate the output.",
+  tldr: [
+    "My design judgment, encoded into an 18-stage pipeline a machine can enforce: a brief goes in, a working prototype comes out.",
+    "Nothing ships that fails the 10-gate audit; 187 of 187 selftests pass. Open source, so clone it and run it.",
+  ],
   snapshot: [
-    ["Role", "Designer and pipeline architect"],
+    ["Role", "Designer and pipeline architect (solo side project)"],
     ["Stack", "Claude Code, zero-dependency Python, Next.js + a design-system package, Playwright, Token Studio"],
-    ["Status", "Open source, DesignOps 2.0, still evolving. Public repo, CI on every PR"],
+    ["Status", "My open-source playground: trial, error, and encoding what survives. Public repo, CI on every PR"],
     ["Scope", "Product intent → 18-stage pipeline → audited prototype, every screen traceable to its requirement"],
   ],
   impact: ["18-stage pipeline", "10-gate audit", "187/187 selftests", "CI on every PR"],
@@ -27,9 +31,10 @@ const data: CaseData = {
   sections: [
     {
       n: "01",
+      kicker: "The problem",
       title: "AI does design work 10× faster, and produces slop 10× faster",
       blocks: [
-        { t: "p", text: "The pain came from real projects. The distance from a ten-page brief to a design brief to a prototype a developer can build on used to cost weeks. AI collapsed that time, and exposed a new problem: prototypes that look finished but aren't. Contrast that fails accessibility. Tokens that drift from the design system. Generic default styling, what I call design slop. And worst of all: AI that invents user insights nobody ever researched." },
+        { t: "lead", text: "The pain came from real projects. The distance from a ten-page brief to a design brief to a prototype a developer can build on used to cost weeks. AI collapsed that time, and exposed a new problem: prototypes that look finished but aren't. Contrast that fails accessibility. Tokens that drift from the design system. Generic default styling, what I call design slop. And worst of all: AI that invents user insights nobody ever researched." },
         { t: "quote", text: "Think of it as an assembly line: every station does one job, and no station passes work forward until it's verified correct. Not reviewed, verified. By a script, not a glance." },
         { t: "flow",
           input: "A product brief (a TOR, a PRD, or a rough idea)",
@@ -46,21 +51,23 @@ const data: CaseData = {
     },
     {
       n: "02",
+      kicker: "The principles",
       title: "If eyeball review doesn't scale, script the review",
       blocks: [
-        { t: "p", text: "Three principles run through every stage of the pipeline." },
-        { t: "steps", items: [
-          { label: "Every stage produces an artifact, and every artifact has a validator.", text: "Each step outputs structured JSON, and each JSON faces its own Python gate. Nothing passes because it “looks OK.” Nothing is assumed." },
-          { label: "Never trust the agent.", text: "Anything checkable gets recalculated from scratch. The validator doesn't ask the AI whether contrast passes WCAG; it recomputes contrast from the hex values itself. It doesn't trust that a rich design exists because tokens exist; it scores richness from screenshots of the actual rendered page. My answer to “how do you trust AI?” is: you don't. You verify." },
-          { label: "Honesty-gated research.", text: "Every UX claim must declare its evidence mode. If there's no real input, no interviews and no data, the system forces the label “inferred” or “hypothesis,” and the validator rejects research that cites evidence it doesn't have. AI is not allowed to fabricate user research. The thing the industry fears most about AI design is the thing this pipeline structurally forbids." },
+        { t: "lead", text: "DesignOps is my playground: the place I try ideas about AI-era design work, watch most of them fail, and encode the ones that survive. Three principles have survived every round so far." },
+        { t: "duo", items: [
+          { icon: "shield", title: "Every artifact has a validator", text: "Each stage outputs structured JSON, and each JSON faces its own Python gate. Nothing passes because it “looks OK.” Nothing is assumed." },
+          { icon: "eye", title: "Never trust the agent", text: "Anything checkable gets recalculated from scratch: contrast recomputed from hex values, richness scored from screenshots of the rendered page. My answer to “how do you trust AI?” is: you don't. You verify." },
+          { icon: "doc", title: "Honesty-gated research", text: "Every UX claim declares its evidence mode. With no real input, the system forces the label “inferred” or “hypothesis,” and rejects research citing evidence it doesn't have. AI is not allowed to fabricate user research." },
         ] },
       ],
     },
     {
       n: "03",
+      kicker: "The audit",
       title: "Ten doors that bad work can't walk through",
       blocks: [
-        { t: "p", text: "At the end of the line stands the audit: ten gates, each a script, each with the power to block handoff. On exit 1, the pipeline physically stops. Three of them tell the story best." },
+        { t: "lead", text: "At the end of the line stands the audit: ten gates, each a script, each with the power to block handoff. On exit 1, the pipeline physically stops. Three of them tell the story best." },
         { t: "sub", text: "Gate 2 · WCAG, recalculated." },
         { t: "p", text: "Contrast is recomputed from the actual color values: oklch converted to sRGB, checked in both light and dark mode. Why not use the values the AI reports? Because the AI is the thing being audited. An auditor that asks the auditee for the verdict isn't an auditor." },
         { t: "sub", text: "Gate 6 · Fidelity." },
@@ -74,14 +81,16 @@ const data: CaseData = {
     },
     {
       n: "04",
+      kicker: "Trust, verified",
       title: "A system that audits itself",
       blocks: [
-        { t: "p", text: "A pipeline that audits design work should survive an audit of its own. The repo carries 187 self-tests, run in CI on every pull request; the gates are themselves gated, each one proven to both pass good input and fail bad. It builds against a real design-system package, imported and pinned, never copy-pasted or patched, so a raw color value where a token exists is itself a hard-gate failure." },
+        { t: "lead", text: "A pipeline that audits design work should survive an audit of its own. The repo carries 187 self-tests, run in CI on every pull request; the gates are themselves gated, each one proven to both pass good input and fail bad. It builds against a real design-system package, imported and pinned, never copy-pasted or patched, so a raw color value where a token exists is itself a hard-gate failure." },
         { t: "p", text: "One constraint shaped the whole token workflow: our Figma plan has no Variables REST API. Instead of waiting for a bigger plan, I designed the pipeline around Token Studio as the source of truth, so tokens flow from JSON to code to Figma without ever needing the missing API. The sample brief in the repo isn't a toy either: it's a Thai-language brief, proving the pipeline works beyond English and connecting it straight back to the healthcare work it grew out of." },
       ],
     },
     {
       n: "05",
+      kicker: "Proof",
       title: "Outcome, verifiable in public",
       blocks: [
         { t: "metric", items: [
@@ -89,14 +98,14 @@ const data: CaseData = {
           { value: "18", label: "Pipeline stages, Discover to Deliver, one agent each" },
           { value: "10", label: "Static audit gates, plus a live render gate" },
         ] },
-        { t: "p", text: "This case needs no permission gates and no redacted numbers. The outcome is the repository itself:" },
+        { t: "p", text: "This case needs no permission gates and no redacted numbers. The outcome is the repository itself, and one artifact you're touching right now: the portfolio you're reading was built and audited through this pipeline, and shipped only after passing its own 10 gates." },
         { t: "list", items: [
           "Open source, public, runnable. Clone it, run the selftest, watch CI.",
           "187/187 self-tests passing, CI green on every PR.",
           "Capability: raw brief in, spec plus working prototype out, with accessibility and quality gates enforced end to end.",
           "Every gate is inspectable: the audit that blocks a build is the same code you can read and run, with no numbers to take on faith.",
         ] },
-        { t: "callout", text: "Don't take my word for it. Clone it." },
+        { t: "band", text: "Don't take my word for it. Clone it." },
       ],
     },
   ],

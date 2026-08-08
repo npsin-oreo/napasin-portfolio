@@ -21,7 +21,7 @@ export const CASES: CaseCard[] = [
     blurb:
       "What if a clinic were designed end to end from day one? A real clinic, real patients, and a doctor visit that takes about 20 minutes instead of a whole day.",
     impact: "About 20 minutes door to door, down from a whole day. 5.0★ from 170+ Google reviews.",
-    cover: "/images/kindmore-cover.jpg",
+    cover: "/images/kindmore-front.jpg",
     coverFit: "cover",
   },
   {
@@ -30,7 +30,7 @@ export const CASES: CaseCard[] = [
     title: "The best interface in the exam room is no interface",
     blurb:
       "An AI medical scribe that turns doctor and patient conversations into clinical notes, designed so doctors can give patients their full attention.",
-    impact: "In production at national scale. 30,000+ consultations across 45 hospitals.",
+    impact: "In production at national scale. 30,000+ consultations across 40+ hospitals.",
     cover: "/images/presscribe-cover.png",
     coverFit: "contain",
   },
@@ -57,28 +57,16 @@ export const CASES: CaseCard[] = [
   },
 ];
 
-export const MORE_WORK = {
-  slug: "/work/scam-insight",
-  title: "Scam Insight Dashboard: making invisible damage visible",
-  blurb:
-    "Aggregating scam intelligence across major organizations, with AI-assisted query and summarization. Data-heavy, public-facing, and mostly confidential.",
-  tag: "Short case · Details on request",
-  cover: "/images/scam-cover.jpg",
-  coverFit: "cover" as CoverFit,
-};
-
-// Canonical list of every case (main + short), numbered 01 to 05.
+// Canonical list of every case, numbered 01 to 04.
 // Used by the "Next up · More work" footer on each case page, which shows
 // all cases except the one being read. Short single-word tags for the cards.
 export type CaseRef = { slug: string; num: string; tag: string; title: string; cover?: string; coverFit?: CoverFit };
 
 export const ALL_CASES: CaseRef[] = [
-  { slug: "/work/kindmore", num: "01", tag: "Service", title: "Designing the whole clinic", cover: "/images/kindmore-cover.jpg", coverFit: "cover" },
+  { slug: "/work/kindmore", num: "01", tag: "Service", title: "Designing the whole clinic", cover: "/images/kindmore-front.jpg", coverFit: "cover" },
   { slug: "/work/presscribe", num: "02", tag: "Product", title: "The best interface is no interface", cover: "/images/presscribe-cover.png", coverFit: "contain" },
   { slug: "/work/virtual-agent", num: "03", tag: "Brand", title: "Designing a voice, not a bot", cover: "/images/virtual-agent-cover.jpg", coverFit: "cover" },
-  { slug: "/work/designops", num: "04", tag: "Process", title: "Design judgment, encoded", cover: "/images/designops-cover.jpg", coverFit: "cover" },
-  { slug: "/work/scam-insight", num: "05", tag: "Data", title: "Making invisible damage visible", cover: "/images/scam-cover.jpg", coverFit: "cover" },
-];
+  { slug: "/work/designops", num: "04", tag: "Process", title: "Design judgment, encoded", cover: "/images/designops-cover.jpg", coverFit: "cover" },];
 
 export const CONTACT = {
   email: "napasin.int@gmail.com",
