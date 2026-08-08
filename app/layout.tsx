@@ -1,19 +1,22 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Newsreader, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Newsreader } from "next/font/google";
 import { CONTACT } from "@/lib/cases";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
+import { CursorGlow } from "@/components/cursor-glow";
 import "./globals.css";
 
-// A three-voice type system:
-//   display: an editorial serif for headlines and pull-quotes (the authored, human voice)
-//   sans:    friendly-but-formal humanist body for reading
-//   mono:    precise numbers, labels, and eyebrows (the measured, machine voice)
-const appDisplay = Newsreader({ variable: "--font-app-display", subsets: ["latin"], style: ["normal", "italic"], display: "swap" });
+// A two-voice type system:
+//   display: Newsreader (with its optical-size axis, so display sizes get the
+//            display cut) — all h1–h3, pull quotes, thesis lines, featured
+//            titles, decorative numerals, big stat values, and single-word
+//            italic emphasis
+//   sans:    Plus Jakarta Sans — prose, UI, buttons, nav, labels, small
+//            numbers (tabular-nums)
+const appDisplay = Newsreader({ variable: "--font-app-display", subsets: ["latin"], style: ["normal", "italic"], axes: ["opsz"], display: "swap" });
 const appSans = Plus_Jakarta_Sans({ variable: "--font-app-sans", subsets: ["latin"], display: "swap" });
-const appMono = Geist_Mono({ variable: "--font-app-mono", subsets: ["latin"], display: "swap" });
 
 const DESCRIPTION =
-  "Napasin (O), Product & Service Designer, 7 years in. I design AI people actually trust, for healthcare and other high-stakes work.";
+  "Napasin (O), Product & Service Designer. Seven years in, four in healthcare AI. I design the human side of AI: systems doctors and patients trust.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -62,29 +65,21 @@ const personJsonLd = {
   sameAs: [CONTACT.linkedin, CONTACT.github],
 };
 
-// Runs synchronously in <head> before first paint: applies the saved theme so
-// there is no light/dark flash. The site defaults to light for first-time visitors.
-const themeScript = `(function(){try{var t=localStorage.getItem("theme")||"light";document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`;
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
-      data-theme="light"
-      suppressHydrationWarning
-      className={`${appDisplay.variable} ${appSans.variable} ${appMono.variable} antialiased`}
+      className={`${appDisplay.variable} ${appSans.variable} antialiased`}
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
       <body className="min-h-svh bg-bg text-fg">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
         {children}
+        <CursorGlow />
       </body>
     </html>
   );

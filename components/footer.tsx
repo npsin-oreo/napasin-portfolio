@@ -1,40 +1,32 @@
 import Link from "next/link";
 import { CONTACT } from "@/lib/cases";
 import { Reveal } from "@/components/reveal";
-import { Mail, Github, Linkedin, Download, ArrowUpRight } from "@/components/icons";
+import { Mail, Github, Linkedin, ArrowUpRight } from "@/components/icons";
 
 export function Footer() {
   return (
     <footer id="contact" className="mt-32 border-t border-border">
       <Reveal className="mx-auto max-w-[1200px] px-6 py-20">
-        <p className="font-mono text-sm text-accent-text">Contact</p>
-        <h2 className="mt-4 max-w-[18ch] font-display text-[2.5rem] font-medium leading-[1.05] tracking-[-0.01em] text-fg sm:text-5xl">
+        <p className="text-sm text-accent-text">Contact</p>
+        <h2 className="mt-4 max-w-[18ch] font-display text-5xl font-medium leading-[1.05] tracking-[-0.01em] text-fg sm:text-6xl">
           Let&apos;s talk
         </h2>
-        <p className="mt-5 max-w-[52ch] text-lg leading-relaxed text-muted">
-          Open to senior product / service design roles, especially where AI meets real-world,
-          high-stakes workflows. The fastest way to reach me is email.
+        <p className="mt-5 max-w-[52ch] text-lg leading-relaxed text-prose">
+          Open to senior product and service design roles, anywhere AI meets careful,
+          high-stakes work. Email is the fastest way to reach me.
         </p>
 
-        <div className="mt-9 flex flex-wrap items-center gap-3">
+        <div className="mt-9">
           <a
             href={`mailto:${CONTACT.email}`}
             className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-base text-accent-fg transition-opacity hover:opacity-90"
           >
             <Mail className="size-4" /> Get in touch
           </a>
-          <a
-            href={CONTACT.resume}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-base text-fg transition-colors hover:bg-surface"
-          >
-            <Download className="size-4" /> Resume
-          </a>
         </div>
 
         {/* contact rows */}
-        <dl className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-2">
+        <dl className="mt-14 border-y border-border sm:grid sm:grid-cols-2 sm:gap-x-12">
           <ContactRow label="Email" value={CONTACT.email} href={`mailto:${CONTACT.email}`} icon={<Mail className="size-4" />} />
           <ContactRow label="Phone" value={CONTACT.phone} href={CONTACT.phoneHref} />
           <ContactRow label="LinkedIn" value="in/napasin-intarayotha" href={CONTACT.linkedin} icon={<Linkedin className="size-4" />} external />
@@ -70,11 +62,11 @@ function ContactRow({
     <a
       href={href}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className="group flex items-center justify-between gap-4 bg-surface px-5 py-4 transition-colors hover:bg-surface-2"
+      className="group flex items-center justify-between gap-4 border-b border-border py-4 transition-colors last:border-b-0 hover:bg-surface-2/60 sm:nth-last-2:border-b-0"
     >
       <span className="flex items-center gap-3">
-        <span className="font-mono text-xs uppercase tracking-wide text-muted">{label}</span>
-        <span className="text-base text-fg">{value}</span>
+        <span className="w-20 shrink-0 text-xs uppercase tracking-wide text-muted">{label}</span>
+        <span className="text-[15px] text-fg">{value}</span>
       </span>
       <span className="text-muted transition-colors group-hover:text-accent-text">
         {icon ?? <ArrowUpRight className="size-4" />}

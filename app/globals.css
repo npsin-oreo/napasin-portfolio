@@ -1,55 +1,49 @@
 @import "tailwindcss";
 
-/* ── Design tokens ──────────────────────────────────────────────
-   Semantic tokens resolve to per-theme CSS variables so utilities
-   like bg-bg / text-fg / text-accent-text switch automatically when
-   [data-theme] flips. The brand mint stays a constant fill in both
-   modes (brand fidelity); the accent used as *text* is a separate,
-   darker token because mint-on-white only hits 2.2:1 (fails AA).   */
+/* ── Warm Studio tokens ──────────────────────────────────────────
+   Single committed light theme: cream paper, brown ink, olive
+   accent with a clay secondary. The olive used as *text* is a
+   separate darker token because the fill olive only hits 4.9:1 as
+   text; --color-accent-text is the AAA-passing substitute.
+
+   Text tiers: fg (ink) for headings/emphasis, prose for body copy,
+   muted for captions/meta, faint for decorative numerals ≥24px only.
+   --color-faint (3.5:1) and --color-border are decorative — never
+   text under 24px.
+
+   Shape rule: full-bleed photos = square edges; cards/panels =
+   radius-card; inner items/figures = radius-item; rounded-full is
+   reserved for buttons and small tag chips only.
+
+   z-scale: mobile sheet 40 · nav 50 · skip link 60 · grain wash 80. */
 @theme {
-  --color-bg: var(--bg);
-  --color-surface: var(--surface);
-  --color-surface-2: var(--surface-2);
-  --color-border: var(--border);
-  --color-fg: var(--fg);
-  --color-muted: var(--muted);
-  --color-accent: var(--accent);          /* fill / button background, brand mint, constant */
-  --color-accent-fg: var(--accent-fg);    /* text on an accent fill */
-  --color-accent-text: var(--accent-text);/* accent used as text / marks, theme-aware for contrast */
+  --color-bg: #f6f3ea; /* cream paper */
+  --color-surface: #fdfbf5; /* raised card */
+  --color-surface-2: #ece7d8; /* nested / hover / tinted band */
+  --color-border: #ddd6c2; /* hairline, decorative only */
+
+  --color-fg: #2c241b; /* ink: headings, emphasis. 13.8:1 */
+  --color-prose: #453c30; /* body prose. 9.8:1, AAA */
+  --color-muted: #5f574a; /* captions, meta. 6.4:1 */
+  --color-faint: #8a8172; /* decorative numerals ≥24px. 3.5:1 */
+
+  --color-accent: #5c6b3c; /* olive fill (buttons, marks) */
+  --color-accent-fg: #f7f6ec; /* cream on olive fill, 5.3:1 */
+  --color-accent-text: #42502a; /* olive as text, 7.9:1 AAA */
+
+  --color-clay: #b0562f; /* secondary axis: rules/fills, never text */
+  --color-clay-text: #96421f; /* clay as text, 6.1:1 */
 
   --font-sans: var(--font-app-sans);
-  --font-mono: var(--font-app-mono);
   --font-display: var(--font-app-display);
 
-  --radius-card: 20px;
-  --radius-item: 12px;
+  --radius-card: 12px;
+  --radius-item: 8px;
+
+  --shadow-card: 0 1px 2px rgb(44 36 27 / 0.06), 0 10px 28px rgb(44 36 27 / 0.08);
 }
 
-/* Dark is the default (also the no-JS fallback). */
-:root,
-[data-theme="dark"] {
-  --bg: #141613;          /* warm near-black canvas */
-  --surface: #1c1f1a;     /* raised card */
-  --surface-2: #232720;   /* nested / hover */
-  --border: #2c302a;      /* hairline */
-  --fg: #eceee9;          /* primary text */
-  --muted: #a2a69e;       /* secondary text */
-  --accent: #4cc296;      /* brand mint */
-  --accent-fg: #10211a;   /* on mint fill */
-  --accent-text: #4cc296; /* mint reads at 8.1:1 on dark, reuse it */
-  color-scheme: dark;
-}
-
-[data-theme="light"] {
-  --bg: #f7f8f5;          /* warm off-white (not pure white) */
-  --surface: #ffffff;     /* raised card */
-  --surface-2: #eef1ea;   /* nested / hover */
-  --border: #dde2d7;      /* hairline */
-  --fg: #191c16;          /* warm near-black text */
-  --muted: #575c51;       /* secondary text, 5.9:1 on bg */
-  --accent: #4cc296;      /* same brand mint fill */
-  --accent-fg: #10211a;   /* dark text on the light mint fill */
-  --accent-text: #0a7048; /* deep emerald, 5.7:1 on bg, AA pass */
+:root {
   color-scheme: light;
 }
 
@@ -63,17 +57,36 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: clip; /* guards .bleed's 100vw against scrollbar-width overflow */
 }
 
+/* Paper grain: a fixed 5% multiply wash over everything (z 80).
+   Inline turbulence SVG, so no asset request; hidden for print. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Full-viewport breakout from inside a centered max-w column. */
+.bleed {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+}
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 }
 
-/* selection + focus in the brand accent */
+/* selection + focus in the brand olive */
 ::selection {
-  background: color-mix(in oklab, var(--color-accent) 30%, transparent);
+  background: color-mix(in oklab, var(--color-accent) 25%, transparent);
 }
 :focus-visible {
   outline: 2px solid var(--color-accent);
@@ -81,24 +94,27 @@ body {
 }
 
 /* ── A4 resume sheet ─────────────────────────────────────────────
-   The resume is a paper preview: always a white sheet on a dark
-   desk, regardless of site theme. It is print-emulating by design. */
+   The resume is a paper preview: always a white sheet on a warm
+   desk. It is print-emulating by design. */
 .a4 {
   width: 210mm;
   min-height: 297mm;
   padding: 15mm 16mm;
   background: #ffffff;
-  color: #1b1d1a;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  color: #2c241b;
+  box-shadow: 0 12px 40px rgb(30 24 16 / 0.4);
 }
 .a4 ::selection {
-  background: color-mix(in oklab, #4cc296 30%, transparent);
+  background: color-mix(in oklab, #5c6b3c 25%, transparent);
 }
 
 @media print {
   html,
   body {
     background: #ffffff !important;
+  }
+  body::after {
+    display: none;
   }
   .no-print {
     display: none !important;

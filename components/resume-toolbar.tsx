@@ -9,7 +9,7 @@ export function ResumeToolbar() {
       <div className="mx-auto flex h-14 max-w-[210mm] items-center justify-between px-4">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 font-mono text-sm text-muted transition-colors hover:text-fg"
+          className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-fg"
         >
           <ArrowRight className="size-4 rotate-180" /> Back to site
         </Link>

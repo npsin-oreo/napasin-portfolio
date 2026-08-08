@@ -6,12 +6,12 @@ import type { ReactNode } from "react";
 // A gentle "fade + rise" as content enters the viewport. Entrance only, once,
 // transform + opacity so it stays on the compositor. prefers-reduced-motion
 // renders the content statically with no transform.
-const EASE = [0.16, 1, 0.3, 1] as const;
+export const EASE = [0.16, 1, 0.3, 1] as const;
 const VIEWPORT = { once: true, margin: "-80px" } as const;
 
 const item: Variants = {
-  hidden: { opacity: 0, y: 12 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
 };
 
 export function Reveal({
@@ -28,10 +28,10 @@ export function Reveal({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 12 }}
+      initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={VIEWPORT}
-      transition={{ duration: 0.5, delay, ease: EASE }}
+      transition={{ duration: 0.6, delay, ease: EASE }}
     >
       {children}
     </motion.div>
@@ -39,12 +39,16 @@ export function Reveal({
 }
 
 // Container that cascades its <RevealItem> children in reading order.
+// `mount` runs the cascade immediately on mount (for above-the-fold content
+// like the hero) instead of waiting for a viewport intersection.
 export function RevealStagger({
   children,
   className,
+  mount = false,
 }: {
   children: ReactNode;
   className?: string;
+  mount?: boolean;
 }) {
   const reduce = useReducedMotion();
   if (reduce) return <div className={className}>{children}</div>;
@@ -52,8 +56,7 @@ export function RevealStagger({
     <motion.div
       className={className}
       initial="hidden"
-      whileInView="show"
-      viewport={VIEWPORT}
+      {...(mount ? { animate: "show" } : { whileInView: "show", viewport: VIEWPORT })}
       variants={{ show: { transition: { staggerChildren: 0.07 } } }}
     >
       {children}
