@@ -108,6 +108,24 @@ body::after {
   background: color-mix(in oklab, #5c6b3c 25%, transparent);
 }
 
+/* ── Multi-page A4 portfolio ─────────────────────────────────────
+   Same paper-preview idea as .a4, but stacked as several sheets: one
+   .a4-page per section, each forced onto its own printed page. */
+.a4-page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 18mm 20mm;
+  background: #ffffff;
+  color: #2c241b;
+  box-shadow: 0 12px 40px rgb(30 24 16 / 0.4);
+}
+.a4-page + .a4-page {
+  margin-top: 24px;
+}
+.a4-page ::selection {
+  background: color-mix(in oklab, #5c6b3c 25%, transparent);
+}
+
 @media print {
   html,
   body {
@@ -128,6 +146,22 @@ body::after {
     margin: 0 !important;
     width: auto !important;
     min-height: auto !important;
+  }
+  .a4-page {
+    box-shadow: none !important;
+    margin: 0 !important;
+    width: auto !important;
+    min-height: auto !important;
+    break-after: page;
+    page-break-after: always;
+  }
+  .a4-page:last-of-type {
+    break-after: auto;
+    page-break-after: auto;
+  }
+  .a4-page .keep-together {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
   @page {
     size: A4;

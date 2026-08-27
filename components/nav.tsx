@@ -22,6 +22,7 @@ export function Nav() {
             <WorkMenu />
             <Link href="/about" className="px-2 py-2 underline-offset-4 decoration-accent/50 transition-colors hover:text-fg hover:underline">About</Link>
             <a href={CONTACT.resume} target="_blank" rel="noopener noreferrer" className="px-2 py-2 underline-offset-4 decoration-accent/50 transition-colors hover:text-fg hover:underline">Resume</a>
+            <a href="/portfolio-pdf" target="_blank" rel="noopener noreferrer" className="px-2 py-2 underline-offset-4 decoration-accent/50 transition-colors hover:text-fg hover:underline">Portfolio PDF</a>
           </div>
           <MobileNav />
         </div>

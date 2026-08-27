@@ -125,6 +125,17 @@ export function MobileNav() {
                       <ArrowUpRight className="size-4 text-muted" />
                     </a>
                   </motion.div>
+                  <motion.div variants={linkItem}>
+                    <a
+                      href="/portfolio-pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between rounded-item px-3 py-3 text-fg transition-colors hover:bg-surface-2"
+                    >
+                      Portfolio PDF
+                      <ArrowUpRight className="size-4 text-muted" />
+                    </a>
+                  </motion.div>
                 </div>
               </motion.div>
             </motion.div>
