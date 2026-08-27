@@ -113,7 +113,6 @@ body::after {
    .a4-page per section, each forced onto its own printed page. */
 .a4-page {
   width: 210mm;
-  min-height: 297mm;
   padding: 18mm 20mm;
   background: #ffffff;
   color: #2c241b;
@@ -151,7 +150,7 @@ body::after {
     box-shadow: none !important;
     margin: 0 !important;
     width: auto !important;
-    min-height: auto !important;
+    min-height: 297mm;
     break-after: page;
     page-break-after: always;
   }
